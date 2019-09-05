@@ -169,11 +169,27 @@ function build(div, wrapper, arr) {
             'img': littleBaby[i].image,
             'colorGroup': littleBaby[i].colorGroup,
             'place': littleBaby[i].place,
+            'mapTest': littleBaby[i].map,
             click: function () {
+                if ($(this).attr('mapTest') !== undefined) {
+                    $('.mapWrapper').show();
+                    $('.eventPlacePop').hide();
+                    //$('.eventPlacePop').html('Where? ');
+                    $('.mapPlace').html('Where? ');
+                    $('.eventMapPop').attr('href', $(this).attr('mapTest'));
+                } else {
+                    $('.eventPlacePop').show();
+                    $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
+                    $('.mapWrapper').hide();
+                    $('.eventMapPop').attr('href', $(this).attr('mapTest'));
+                }
+                //$('.eventPlacePop').html('Where? ');
+                //$('.eventMapPop').attr('href', $(this).attr('mapTest'));
+                $('.eventMapPop').html($(this).attr('place'));
                 $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
                 $('.eventNamePop').html($(this).attr('name'));
                 $('#eventCover').attr('src', ('./images' + $(this).attr('img'))).show();
-                $('.eventPlacePop').html('Place: ' + $(this).attr('place'));
+                //$('.eventPlacePop').html('Place: ' + $(this).attr('place'));
                 $('#eventDetails').fadeIn(150);
             }
         }).appendTo(groupWrapper);
@@ -204,10 +220,6 @@ function build(div, wrapper, arr) {
             src: './images' + littleBaby[i].image
         }).appendTo(eventImgWrapper);
     }
-
-    setTimeout(function () {
-        //$('.spinnerWrapper').hide();
-    }, 0);
 }
 
 function buildVideos(div, wrapper, arr) {
@@ -302,12 +314,6 @@ function buildVideos(div, wrapper, arr) {
                 $(this).addClass('desktopVideo');
             }
         });
-
-        //if ($(video).attr('type') == 'mobile') {
-        //    $(video).addClass('mobileVideo');
-        //} else {
-        //    $(video).addClass('desktopVideo');
-        //}
     }
 }
 
