@@ -99,9 +99,9 @@ function buildGallery(div, wrapper, arr) {
                     $('.mapPlace').html('Where? ');
                     $('.eventMapPop').attr('href', $(this).attr('googleMap'));
                 } else {
+                    $('.mapWrapper').hide();
                     $('.eventPlacePop').show();
                     $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
-                    $('.mapWrapper').hide();
                     $('.eventMapPop').attr('href', '#');
                 }
                 $('.eventMapPop').html($(this).attr('place'));
@@ -189,9 +189,9 @@ function build(div, wrapper, arr) {
                     $('.mapPlace').html('Where? ');
                     $('.eventMapPop').attr('href', $(this).attr('googleMap'));
                 } else {
+                    $('.mapWrapper').hide();
                     $('.eventPlacePop').show();
                     $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
-                    $('.mapWrapper').hide();
                     $('.eventMapPop').attr('href', '#');
                 }
                 $('.eventMapPop').html($(this).attr('place'));
