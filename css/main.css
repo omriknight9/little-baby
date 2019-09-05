@@ -47,7 +47,8 @@ main {
     /*background-color: #EAEAEA;*/
     /*background-color: rgba(0, 139, 121, .95);*/
     background-image: linear-gradient(to right, rgba(0, 139, 121, .95), rgba(139,100,200,.95));
-    box-shadow: 0 3px 8px 3px #848484;
+    /*box-shadow: 0 3px 8px 3px #848484;*/
+    box-shadow: 0 0 8px 0 rgba(0, 239, 0, .95);
     transition: .5s;
     -webkit-transition: .5s;
     -o-transition: .5s;
