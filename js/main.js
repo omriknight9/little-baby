@@ -91,11 +91,23 @@ function buildGallery(div, wrapper, arr) {
             'group': gallery[i].group,
             'img': gallery[i].image,
             'place': gallery[i].place,
+            'googleMap': gallery[i].map,
             click: function () {
+                if ($(this).attr('googleMap') !== undefined) {
+                    $('.mapWrapper').show();
+                    $('.eventPlacePop').hide();
+                    $('.mapPlace').html('Where? ');
+                    $('.eventMapPop').attr('href', $(this).attr('googleMap'));
+                } else {
+                    $('.eventPlacePop').show();
+                    $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
+                    $('.mapWrapper').hide();
+                    $('.eventMapPop').attr('href', '#');
+                }
+                $('.eventMapPop').html($(this).attr('place'));
                 $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
                 $('.eventNamePop').html($(this).attr('name'));
                 $('#eventCover').attr('src', ('./images' + $(this).attr('img'))).show();
-                $('.eventPlacePop').html('Place: ' + $(this).attr('place'));
                 $('#eventDetails').fadeIn(150);
             }
         }).appendTo(galleryWrapper);
@@ -169,27 +181,23 @@ function build(div, wrapper, arr) {
             'img': littleBaby[i].image,
             'colorGroup': littleBaby[i].colorGroup,
             'place': littleBaby[i].place,
-            'mapTest': littleBaby[i].map,
+            'googleMap': littleBaby[i].map,
             click: function () {
-                if ($(this).attr('mapTest') !== undefined) {
+                if ($(this).attr('googleMap') !== undefined) {
                     $('.mapWrapper').show();
                     $('.eventPlacePop').hide();
-                    //$('.eventPlacePop').html('Where? ');
                     $('.mapPlace').html('Where? ');
-                    $('.eventMapPop').attr('href', $(this).attr('mapTest'));
+                    $('.eventMapPop').attr('href', $(this).attr('googleMap'));
                 } else {
                     $('.eventPlacePop').show();
                     $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
                     $('.mapWrapper').hide();
-                    $('.eventMapPop').attr('href', $(this).attr('mapTest'));
+                    $('.eventMapPop').attr('href', '#');
                 }
-                //$('.eventPlacePop').html('Where? ');
-                //$('.eventMapPop').attr('href', $(this).attr('mapTest'));
                 $('.eventMapPop').html($(this).attr('place'));
                 $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
                 $('.eventNamePop').html($(this).attr('name'));
                 $('#eventCover').attr('src', ('./images' + $(this).attr('img'))).show();
-                //$('.eventPlacePop').html('Place: ' + $(this).attr('place'));
                 $('#eventDetails').fadeIn(150);
             }
         }).appendTo(groupWrapper);
