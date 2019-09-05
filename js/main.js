@@ -1,4 +1,4 @@
-﻿
+
 var littleMan = [];
 var gallery = [];
 var videos = [];
@@ -255,7 +255,7 @@ function buildVideos(div, wrapper, arr) {
 
         var playVideoBtn = $('<img>', {
             class: 'playVideoBtn',
-            src: './images/playPause.png',
+            src: './images/playPause2.png',
             click: function () {
                 var thisVideo = $(this).parent().parent().find($('.video')).get(0);
 
