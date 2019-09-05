@@ -306,10 +306,13 @@ function buildVideos(div, wrapper, arr) {
             id: videos[i].name,
             src: './videos' + videos[i].video,
             click: function () {
+                $('.mapWrapper').hide();
+                $('.eventPlacePop').show();
+                $('.eventMapPop').attr('href', '#');
                 $('.eventDatePop').html('Date: ' + $(this).parent().attr('dateText'));
                 $('.eventNamePop').html($(this).parent().attr('name'));
                 $('#eventCover').hide();
-                $('.eventPlacePop').html('Place: ' + $(this).parent().attr('place'));
+                $('.eventPlacePop').html('Where? ' + $(this).parent().attr('place'));
                 $('#eventDetails').fadeIn(150);
             }
         }).appendTo(videoContainer);
