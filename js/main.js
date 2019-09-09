@@ -385,9 +385,6 @@ function sort(div, num) {
 
     $.each($('.sortContainer'), function (key, value) {
         $(this).fadeOut('fast');
-        eventsCounter = 1;
-        galleryCounter = 1;
-        videosCounter = 1;
     });
 
     switch (num) {
@@ -395,6 +392,8 @@ function sort(div, num) {
             if (eventsCounter == 1) {
                 $(div).find($('.sortContainer')).fadeIn('fast');
                 eventsCounter = 2;
+                galleryCounter = 1;
+                videosCounter = 1;
             } else {
                 $(div).find($('.sortContainer')).fadeOut('fast');
                 eventsCounter = 1;
@@ -404,6 +403,8 @@ function sort(div, num) {
             if (galleryCounter == 1) {
                 $(div).find($('.sortContainer')).fadeIn('fast');
                 galleryCounter = 2;
+                eventsCounter = 1;
+                videosCounter = 1;
             } else {
                 $(div).find($('.sortContainer')).fadeOut('fast');
                 galleryCounter = 1;
@@ -413,6 +414,8 @@ function sort(div, num) {
             if (videosCounter == 1) {
                 $(div).find($('.sortContainer')).fadeIn('fast');
                 videosCounter = 2;
+                eventsCounter = 1;
+                galleryCounter = 1;
             } else {
                 $(div).find($('.sortContainer')).fadeOut('fast');
                 videosCounter = 1;
