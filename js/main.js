@@ -36,7 +36,7 @@ function loadJson() {
     $.get('./lists/littleBaby.txt', function (data) {
         littleMan.push(JSON.parse(data));
         setTimeout(function () {
-            build('littleManWrapper', $('#eventContainer'), littleMan);
+            buildEvents('littleManWrapper', $('#eventContainer'), littleMan);
         }, 500);
     });
 
@@ -136,7 +136,7 @@ function buildGallery(div, wrapper, arr) {
     }
 }
 
-function build(div, wrapper, arr) {
+function buildEvents(div, wrapper, arr) {
 
     var littleBaby = arr[0].littleBaby;
     var newDate = new Date();
@@ -332,7 +332,6 @@ function buildVideos(div, wrapper, arr) {
                 var thisVideo = $(this).parent().parent().find($('.video')).get(0);
 
                 if (thisVideo.paused) {
-                    $(thisVideo).trigger('play');
                     $.each($('.video'), function (key, value) {
                         $(this).trigger('pause');
                     });
