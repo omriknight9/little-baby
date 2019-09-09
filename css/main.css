@@ -15,7 +15,6 @@ body {
 
 main {
     margin-top: 10rem;
-    
 }
 
 ::-webkit-scrollbar-track {
@@ -34,8 +33,8 @@ main {
 
 .headerContainer {
     width: 100%;
-    z-index: 1;
     position: relative;
+    z-index: 3;
 }
 
 .header {
@@ -50,7 +49,7 @@ main {
     -webkit-transition: .5s;
     -o-transition: .5s;
     -moz-transition: .5s;
-    z-index: 1;
+    z-index: 3;
 }
 
 .header p {
