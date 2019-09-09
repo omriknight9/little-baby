@@ -3,6 +3,7 @@ var littleMan = [];
 var gallery = [];
 var videos = [];
 var counter = 1;
+var sortBtnCounter = 1;
 
 var valid;
 var d = new Date();
@@ -68,13 +69,29 @@ function buildGallery(div, wrapper, arr) {
         class: 'btnWrapper'
     }).appendTo(wrapper);
 
+    var sortContainer = $('<div>', {
+        class: 'sortContainer',
+    }).appendTo(btnWrapper);
+
+    var sortContent = $('<div>', {
+        class: 'sortContent',
+    }).appendTo(sortContainer);
+
+    var sortBtn = $('<button>', {
+        class: 'sortBtn',
+        text: 'Sort',
+        click: function () {
+            sort();
+        }
+    }).appendTo(btnWrapper);
+
     var dateSortBtn = $('<button>', {
         class: 'dateSortBtn',
         text: 'Sort By Date',
         click: function () {
             sortEvents($('#galleryContainer'), 'date', 1);
         }
-    }).appendTo(btnWrapper);
+    }).appendTo(sortContent);
 
     var galleryWrapper = $('<div>', {
         class: 'galleryWrapper',
@@ -133,29 +150,48 @@ function build(div, wrapper, arr) {
         class: 'btnWrapper'
     }).appendTo(wrapper);
 
+    var sortContainer = $('<div>', {
+        class: 'sortContainer',
+    }).appendTo(btnWrapper);
+
+    var sortContent = $('<div>', {
+        class: 'sortContent',
+    }).appendTo(sortContainer);
+
+    var sortBtn = $('<button>', {
+        class: 'sortBtn',
+        text: 'Sort',
+        click: function () {
+            sort();
+        }
+    }).appendTo(btnWrapper);
+
     var dateSortBtn = $('<button>', {
         class: 'dateSortBtn',
         text: 'Sort By Date',
         click: function () {
             sortEvents($('#eventContainer'), 'date', 1);
+            $('.sortContainer').fadeOut('fast');
         }
-    }).appendTo(btnWrapper);
+    }).appendTo(sortContent);
 
     var nameSortBtn = $('<button>', {
         class: 'nameSortBtn',
         text: 'Sort By Name',
         click: function () {
             sortEvents($('#eventContainer'), 'name', 2);
+            $('.sortContainer').fadeOut('fast');
         }
-    }).appendTo(btnWrapper);
+    }).appendTo(sortContent);
 
     var groupSortBtn = $('<button>', {
         class: 'groupSortBtn',
         text: 'Sort By Group',
         click: function () {
             sortEvents($('#eventContainer'), 'group', 3);
+            $('.sortContainer').fadeOut('fast');
         }
-    }).appendTo(btnWrapper);
+    }).appendTo(sortContent);
 
     for (var i = 0; i < littleBaby.length; i++) {
 
@@ -244,13 +280,29 @@ function buildVideos(div, wrapper, arr) {
         class: 'btnWrapper'
     }).appendTo(wrapper);
 
+    var sortContainer = $('<div>', {
+        class: 'sortContainer',
+    }).appendTo(btnWrapper);
+
+    var sortContent = $('<div>', {
+        class: 'sortContent',
+    }).appendTo(sortContainer);
+
+    var sortBtn = $('<button>', {
+        class: 'sortBtn',
+        text: 'Sort',
+        click: function () {
+            sort();
+        }
+    }).appendTo(btnWrapper);
+
     var dateSortBtn = $('<button>', {
         class: 'dateSortBtn',
         text: 'Sort By Date',
         click: function () {
             sortEvents($('#videoContainer'), 'date', 1);
         }
-    }).appendTo(btnWrapper);
+    }).appendTo(sortContent);
 
     var videoWrapper = $('<div>', {
         class: 'videoWrapper',
@@ -325,6 +377,16 @@ function buildVideos(div, wrapper, arr) {
                 $(this).addClass('desktopVideo');
             }
         });
+    }
+}
+
+function sort() {
+    if (sortBtnCounter == 1) {
+        $('.sortContainer').fadeIn('fast');
+        sortBtnCounter = 2;
+    } else {
+        $('.sortContainer').fadeOut('fast');
+        sortBtnCounter = 1;
     }
 }
 
@@ -450,6 +512,8 @@ function sortEvents(container, elem1, kind) {
             $(this).append(ids[i].element);
         }
     });
+    $('.sortContainer').fadeOut('fast');
+    sortBtnCounter = 1;
 }
 
 function removePopup(container) {
