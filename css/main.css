@@ -90,6 +90,7 @@ h1 {
 }
 
 .btnWrapper {
+    position: relative;
     display: flex;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -99,6 +100,30 @@ h1 {
     justify-content: center;
     margin-bottom: 3rem;
     width: 100%;
+}
+
+.sortContainer {
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 5rem;
+    z-index: 2;
+}
+
+.sortContent {
+    width: 50%;
+    display: flex;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right,#e0ffff,rgba(255,0,0,.9),#e0ffff);
+    border-radius: 5px;
+    box-shadow: 0 1px 3px 3px #848484;
+    margin: auto;
 }
 
 .btnWrapper button {
