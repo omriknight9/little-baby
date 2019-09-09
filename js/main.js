@@ -3,7 +3,9 @@ var littleMan = [];
 var gallery = [];
 var videos = [];
 var counter = 1;
-var sortBtnCounter = 1;
+var eventsCounter = 1;
+var galleryCounter = 1;
+var videosCounter = 1;
 
 var valid;
 var d = new Date();
@@ -81,7 +83,7 @@ function buildGallery(div, wrapper, arr) {
         class: 'sortBtn',
         text: 'Sort',
         click: function () {
-            sort();
+            sort($(this).parent().parent(), 2);
         }
     }).appendTo(btnWrapper);
 
@@ -162,7 +164,7 @@ function buildEvents(div, wrapper, arr) {
         class: 'sortBtn',
         text: 'Sort',
         click: function () {
-            sort();
+            sort($(this).parent().parent(), 1);
         }
     }).appendTo(btnWrapper);
 
@@ -292,7 +294,7 @@ function buildVideos(div, wrapper, arr) {
         class: 'sortBtn',
         text: 'Sort',
         click: function () {
-            sort();
+            sort($(this).parent().parent(), 3);
         }
     }).appendTo(btnWrapper);
 
@@ -379,13 +381,43 @@ function buildVideos(div, wrapper, arr) {
     }
 }
 
-function sort() {
-    if (sortBtnCounter == 1) {
-        $('.sortContainer').fadeIn('fast');
-        sortBtnCounter = 2;
-    } else {
-        $('.sortContainer').fadeOut('fast');
-        sortBtnCounter = 1;
+function sort(div, num) {
+
+    $.each($('.sortContainer'), function (key, value) {
+        $(this).fadeOut('fast');
+        eventsCounter = 1;
+        galleryCounter = 1;
+        videosCounter = 1;
+    });
+
+    switch (num) {
+        case 1:
+            if (eventsCounter == 1) {
+                $(div).find($('.sortContainer')).fadeIn('fast');
+                eventsCounter = 2;
+            } else {
+                $(div).find($('.sortContainer')).fadeOut('fast');
+                eventsCounter = 1;
+            }
+            break;
+        case 2:
+            if (galleryCounter == 1) {
+                $(div).find($('.sortContainer')).fadeIn('fast');
+                galleryCounter = 2;
+            } else {
+                $(div).find($('.sortContainer')).fadeOut('fast');
+                galleryCounter = 1;
+            }
+            break;
+        case 3:
+            if (videosCounter == 1) {
+                $(div).find($('.sortContainer')).fadeIn('fast');
+                videosCounter = 2;
+            } else {
+                $(div).find($('.sortContainer')).fadeOut('fast');
+                videosCounter = 1;
+            }
+            break;
     }
 }
 
@@ -512,7 +544,9 @@ function sortEvents(container, elem1, kind) {
         }
     });
     $('.sortContainer').fadeOut('fast');
-    sortBtnCounter = 1;
+    eventsCounter = 1;
+    galleryCounter = 1;
+    videosCounter = 1;
 }
 
 function removePopup(container) {
