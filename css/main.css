@@ -481,7 +481,11 @@ p {
 
 .mapWrapper {
     width: 100%;
+    position: absolute;
+    top: 7rem;
+    left: 0;
     text-align: center;
+    z-index: 1;
 }
 
 .mapPlace {
@@ -504,10 +508,28 @@ p {
 
 .popupBtnsWrapper {
     width: 100%;
-    margin-bottom: 2rem;
     text-align: center;
+    margin-top: 16rem;
 }
 
+.eventPlacePop {
+    width: 100%;
+    position: absolute;
+    top: 8rem;
+    left: 0;
+    margin: 0;
+    z-index: 1;
+}
+
+.eventDatePop {
+    width: 100%;
+    position: absolute;
+    top: 10rem;
+    left: 0;
+    margin: 0;
+    z-index: 1;
+}
+ 
 .popupBtn {
     padding: .7rem;
     width: 7rem;
@@ -537,7 +559,10 @@ p {
 
 .eventCoverWrapper {
     width: 100%;
-    margin-top: 2rem;
+    position: absolute;
+    top: 7rem;
+    left: 0;
+    /*margin-top: 2rem;*/
     z-index: 0;
     text-align: center;
 }
@@ -546,6 +571,7 @@ p {
     width: 200px;
     height: 250px;
     border-radius: 5px;
+    opacity: .4;
 }
 
 #addeventatc1 {
@@ -664,6 +690,10 @@ p {
 
 @media only screen and (max-width: 460px) {
 
+    .popupCont {
+        top: 2%;
+    }
+
     h1 {
         font-size: 1.5rem;
     }
@@ -708,9 +738,30 @@ p {
 }
 
 @media only screen and (max-width: 400px) {
+
+    .popUpInfo h2 {
+        font-size: 1.4rem;
+    }
+
     .galleryImg {
         width: 300px;
         height: 450px;
+    }
+
+    .eventCoverWrapper {
+        top: 5rem;
+    }
+
+    .mapWrapper {
+        top: 5rem;
+    }
+
+    .eventPlacePop {
+        top: 6rem;
+    }
+
+    .eventDatePop {
+        top: 9rem;
     }
 }
 
