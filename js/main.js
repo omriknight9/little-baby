@@ -101,11 +101,29 @@ function buildGallery(div, wrapper, arr) {
 
     for (var i = 0; i < gallery.length; i++) {
 
+        var date = new Date(gallery[i].date);
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var yearToShow = date.getFullYear();
+
+        if (day < 10) {
+            day = '0' + day
+        } else {
+            day = day;
+        }
+
+        if (month < 10) {
+            month = '0' + month
+        } else {
+            month = month;
+        }
+
+        var dateForShow = day + '/' + month + '/' + yearToShow;
 
         var galleryImgWrapper = $('<div>', {
             class: 'galleryImgWrapper',
             'date': gallery[i].date,
-            'dateText': gallery[i].dateText,
+            'dateText': dateForShow,
             'name': gallery[i].name,
             'group': gallery[i].group,
             'img': gallery[i].image,
@@ -210,10 +228,29 @@ function buildEvents(div, wrapper, arr) {
             }).appendTo(wrapper)
         }
 
+        var date = new Date(littleBaby[i].date);
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var yearToShow = date.getFullYear();
+
+        if (day < 10) {
+            day = '0' + day
+        } else {
+            day = day;
+        }
+
+        if (month < 10) {
+            month = '0' + month
+        } else {
+            month = month;
+        }
+
+        var dateForShow = day + '/' + month + '/' + yearToShow;
+
         var eventWrapper = $('<div>', {
             class: 'eventWrapper',
             'date': littleBaby[i].date,
-            'dateText': littleBaby[i].dateText,
+            'dateText': dateForShow,
             'name': littleBaby[i].name,
             'group': littleBaby[i].group,
             'img': littleBaby[i].image,
@@ -253,7 +290,7 @@ function buildEvents(div, wrapper, arr) {
 
         var eventDate = $('<p>', {
             class: 'eventDate',
-            text: 'Date: ' + littleBaby[i].dateText
+            text: 'Date: ' + dateForShow
         }).appendTo(eventWrapper);
 
         var eventImgWrapper = $('<div>', {
@@ -312,10 +349,29 @@ function buildVideos(div, wrapper, arr) {
 
     for (var i = 0; i < videos.length; i++) {
 
+        var date = new Date(videos[i].date);
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var yearToShow = date.getFullYear();
+
+        if (day < 10) {
+            day = '0' + day
+        } else {
+            day = day;
+        }
+
+        if (month < 10) {
+            month = '0' + month
+        } else {
+            month = month;
+        }
+
+        var dateForShow = day + '/' + month + '/' + yearToShow;
+
         var videoContainer = $('<div>', {
             class: 'videoContainer',
             'date': videos[i].date,
-            'dateText': videos[i].dateText,
+            'dateText': dateForShow,
             'name': videos[i].name,
             'group': videos[i].group,
             'video': videos[i].video,
