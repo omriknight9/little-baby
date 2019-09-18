@@ -195,7 +195,7 @@ function buildEvents(div, wrapper, arr, num) {
         var dateForShow = day + '/' + month + '/' + yearToShow;
 
         switch (num) {
-            case 1: case 2:
+            case 1:
                 var eventWrapper = $('<div>', {
                     class: eventClass,
                     'date': littleBaby[i].date,
@@ -225,6 +225,43 @@ function buildEvents(div, wrapper, arr, num) {
                         $('#eventDetails').fadeIn(150);
                     }
                 }).appendTo(containerToAppend);
+
+                if ($(eventWrapper).attr('colorGroup') % 2 == 0) {
+                    $(eventWrapper).addClass('odd');
+                } else {
+                    $(eventWrapper).addClass('even');
+                }
+                break;
+            case 2:
+                    var eventWrapper = $('<div>', {
+                        class: eventClass,
+                        'date': littleBaby[i].date,
+                        'dateText': dateForShow,
+                        'name': littleBaby[i].name,
+                        'group': littleBaby[i].group,
+                        'img': littleBaby[i].image,
+                        'colorGroup': littleBaby[i].colorGroup,
+                        'place': littleBaby[i].place,
+                        'googleMap': littleBaby[i].map,
+                        click: function () {
+                            if ($(this).attr('googleMap') !== undefined) {
+                                $('.mapWrapper').show();
+                                $('.eventPlacePop').hide();
+                                $('.mapPlace').html('Where? ');
+                                $('.eventMapPop').attr('href', $(this).attr('googleMap'));
+                            } else {
+                                $('.mapWrapper').hide();
+                                $('.eventPlacePop').show();
+                                $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
+                                $('.eventMapPop').attr('href', '#');
+                            }
+                            $('.eventMapPop').html($(this).attr('place'));
+                            $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
+                            $('.eventNamePop').html($(this).attr('name'));
+                            $('#eventCover').attr('src', ('./images' + $(this).attr('img'))).show();
+                            $('#eventDetails').fadeIn(150);
+                        }
+                    }).appendTo(containerToAppend);
                 break;
             case 3:
                 var eventWrapper = $('<div>', {
@@ -240,12 +277,6 @@ function buildEvents(div, wrapper, arr, num) {
                     'place': littleBaby[i].place,
                 }).appendTo(containerToAppend);
                 break;
-        }
-
-        if ($(eventWrapper).attr('colorGroup') % 2 == 0) {
-            $(eventWrapper).addClass('odd');
-        } else {
-            $(eventWrapper).addClass('even');
         }
 
         switch(num) {
