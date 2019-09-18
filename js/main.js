@@ -38,132 +38,53 @@ function loadJson() {
     $.get('./lists/littleBaby.txt', function (data) {
         littleMan.push(JSON.parse(data));
         setTimeout(function () {
-            buildEvents('littleManWrapper', $('#eventContainer'), littleMan);
+            buildEvents('eventsWrapper', $('#eventContainer'), littleMan, 1);
         }, 500);
     });
 
     $.get('./lists/gallery.txt', function (data) {
         gallery.push(JSON.parse(data));
         setTimeout(function () {
-            buildGallery('galleryWrapper', $('#galleryContainer'), gallery);
+            buildEvents('galleryContainer', $('#galleryContainer'), gallery, 2);
         }, 1500);
     });
 
     $.get('./lists/videos.txt', function (data) {
         videos.push(JSON.parse(data));
         setTimeout(function () {
-            buildVideos('videoWrapper', $('#videoContainer'), videos);
+            buildEvents('videoWrapper', $('#videoContainer'), videos, 3);
             $('.spinnerWrapper').hide();
         }, 1500);
     });
 }
 
-function buildGallery(div, wrapper, arr) {
-    var gallery = arr[0].gallery;
-    var newDate = new Date();
-    var year = newDate.getFullYear();
+function buildEvents(div, wrapper, arr, num) {
 
-    var galleryHeader = $('<h2>', {
-        text: 'Gallery'
-    }).appendTo(wrapper);
+    var littleBaby;
+    var headerText;
+    var containerToAppend;
+    var eventClass;
 
-    var btnWrapper = $('<div>', {
-        class: 'btnWrapper'
-    }).appendTo(wrapper);
-
-    var sortContainer = $('<div>', {
-        class: 'sortContainer',
-    }).appendTo(btnWrapper);
-
-    var sortContent = $('<div>', {
-        class: 'sortContent',
-    }).appendTo(sortContainer);
-
-    var sortBtn = $('<button>', {
-        class: 'sortBtn',
-        text: 'Sort',
-        click: function () {
-            sort($(this).parent().parent(), 2);
-        }
-    }).appendTo(btnWrapper);
-
-    var dateSortBtn = $('<button>', {
-        class: 'dateSortBtn',
-        text: 'Sort By Date',
-        click: function () {
-            sortEvents($('#galleryContainer'), 'date', 1);
-        }
-    }).appendTo(sortContent);
-
-    var galleryWrapper = $('<div>', {
-        class: 'galleryWrapper',
-    }).appendTo(wrapper);
-
-    for (var i = 0; i < gallery.length; i++) {
-
-        var date = new Date(gallery[i].date);
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var yearToShow = date.getFullYear();
-
-        if (day < 10) {
-            day = '0' + day
-        } else {
-            day = day;
-        }
-
-        if (month < 10) {
-            month = '0' + month
-        } else {
-            month = month;
-        }
-
-        var dateForShow = day + '/' + month + '/' + yearToShow;
-
-        var galleryImgWrapper = $('<div>', {
-            class: 'galleryImgWrapper',
-            'date': gallery[i].date,
-            'dateText': dateForShow,
-            'name': gallery[i].name,
-            'group': gallery[i].group,
-            'img': gallery[i].image,
-            'place': gallery[i].place,
-            'googleMap': gallery[i].map,
-            click: function () {
-                if ($(this).attr('googleMap') !== undefined) {
-                    $('.mapWrapper').show();
-                    $('.eventPlacePop').hide();
-                    $('.mapPlace').html('Where? ');
-                    $('.eventMapPop').attr('href', $(this).attr('googleMap'));
-                } else {
-                    $('.mapWrapper').hide();
-                    $('.eventPlacePop').show();
-                    $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
-                    $('.eventMapPop').attr('href', '#');
-                }
-                $('.eventMapPop').html($(this).attr('place'));
-                $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
-                $('.eventNamePop').html($(this).attr('name'));
-                $('#eventCover').attr('src', ('./images' + $(this).attr('img'))).show();
-                $('#eventDetails').fadeIn(150);
-            }
-        }).appendTo(galleryWrapper);
-
-        var galleryImg = $('<img>', {
-            class: 'galleryImg',
-            src: './images' + gallery[i].image
-        }).appendTo(galleryImgWrapper);
+    switch(num) {
+        case 1:
+            littleBaby = arr[0].littleBaby;
+            headerText = 'Events';
+        break;
+        case 2:
+            littleBaby = arr[0].gallery;
+            headerText = 'Gallery';
+        break;
+        case 3:
+            littleBaby = arr[0].videos;
+            headerText = 'Videos';
+        break;
     }
-}
 
-function buildEvents(div, wrapper, arr) {
-
-    var littleBaby = arr[0].littleBaby;
     var newDate = new Date();
     var year = newDate.getFullYear();
 
-    var eventHeader = $('<h2>', {
-        text: 'Events'
+    var header = $('<h2>', {
+        text: headerText
     }).appendTo(wrapper);
 
     var btnWrapper = $('<div>', {
@@ -182,7 +103,7 @@ function buildEvents(div, wrapper, arr) {
         class: 'sortBtn',
         text: 'Sort',
         click: function () {
-            sort($(this).parent().parent(), 1);
+            sort($(this).parent().parent(), num);
         }
     }).appendTo(btnWrapper);
 
@@ -190,42 +111,68 @@ function buildEvents(div, wrapper, arr) {
         class: 'dateSortBtn',
         text: 'Sort By Date',
         click: function () {
-            sortEvents($('#eventContainer'), 'date', 1);
-            $('.sortContainer').fadeOut('fast');
+            sortEvents($(wrapper), 'date', 1);
         }
     }).appendTo(sortContent);
 
-    var nameSortBtn = $('<button>', {
-        class: 'nameSortBtn',
-        text: 'Sort By Name',
-        click: function () {
-            sortEvents($('#eventContainer'), 'name', 2);
-            $('.sortContainer').fadeOut('fast');
-        }
-    }).appendTo(sortContent);
+    switch(num) {
+        case 1:
+            var nameSortBtn = $('<button>', {
+                class: 'nameSortBtn',
+                text: 'Sort By Name',
+                click: function () {
+                    sortEvents($(wrapper), 'name', 2);
+                }
+            }).appendTo(sortContent);
+        
+            var groupSortBtn = $('<button>', {
+                class: 'groupSortBtn',
+                text: 'Sort By Group',
+                click: function () {
+                    sortEvents($(wrapper), 'group', 3);
+                }
+            }).appendTo(sortContent);
+            break;
 
-    var groupSortBtn = $('<button>', {
-        class: 'groupSortBtn',
-        text: 'Sort By Group',
-        click: function () {
-            sortEvents($('#eventContainer'), 'group', 3);
-            $('.sortContainer').fadeOut('fast');
-        }
-    }).appendTo(sortContent);
+        case 2:
+            var galleryWrapper = $('<div>', {
+                class: 'galleryWrapper',
+            }).appendTo(wrapper);
+            break;
+        case 3:
+            var videoWrapper = $('<div>', {
+                class: 'videoWrapper',
+            }).appendTo(wrapper);
+            break;
+    }
 
     for (var i = 0; i < littleBaby.length; i++) {
 
-        var groupStr = JSON.stringify(littleBaby[i].group);
-        var group = groupStr.substring(0, groupStr.indexOf('.'));
-
-        var groupWrapper;
-
-        if ($(groupWrapper).hasClass("group" + group)) {
-
-        } else {
-            groupWrapper = $('<div>', {
-                class: "group" + group + ' groupWrapper'
-            }).appendTo(wrapper)
+        switch(num) {
+            case 1:
+                var groupStr = JSON.stringify(littleBaby[i].group);
+                var group = groupStr.substring(0, groupStr.indexOf('.'));
+        
+                var groupWrapper;
+                eventClass = 'eventWrapper';
+                if ($(groupWrapper).hasClass("group" + group)) {
+        
+                } else {
+                    groupWrapper = $('<div>', {
+                        class: "group" + group + ' groupWrapper'
+                    }).appendTo(wrapper);
+                    containerToAppend = groupWrapper;
+                }
+                break;
+    
+            case 2:
+                containerToAppend = galleryWrapper;
+                eventClass = 'galleryImgWrapper';
+                break;
+            case 3:
+                containerToAppend = videoWrapper;
+                eventClass = 'videoContainer';
+                break;
         }
 
         var date = new Date(littleBaby[i].date);
@@ -247,35 +194,53 @@ function buildEvents(div, wrapper, arr) {
 
         var dateForShow = day + '/' + month + '/' + yearToShow;
 
-        var eventWrapper = $('<div>', {
-            class: 'eventWrapper',
-            'date': littleBaby[i].date,
-            'dateText': dateForShow,
-            'name': littleBaby[i].name,
-            'group': littleBaby[i].group,
-            'img': littleBaby[i].image,
-            'colorGroup': littleBaby[i].colorGroup,
-            'place': littleBaby[i].place,
-            'googleMap': littleBaby[i].map,
-            click: function () {
-                if ($(this).attr('googleMap') !== undefined) {
-                    $('.mapWrapper').show();
-                    $('.eventPlacePop').hide();
-                    $('.mapPlace').html('Where? ');
-                    $('.eventMapPop').attr('href', $(this).attr('googleMap'));
-                } else {
-                    $('.mapWrapper').hide();
-                    $('.eventPlacePop').show();
-                    $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
-                    $('.eventMapPop').attr('href', '#');
-                }
-                $('.eventMapPop').html($(this).attr('place'));
-                $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
-                $('.eventNamePop').html($(this).attr('name'));
-                $('#eventCover').attr('src', ('./images' + $(this).attr('img'))).show();
-                $('#eventDetails').fadeIn(150);
-            }
-        }).appendTo(groupWrapper);
+        switch (num) {
+            case 1: case 2:
+                var eventWrapper = $('<div>', {
+                    class: eventClass,
+                    'date': littleBaby[i].date,
+                    'dateText': dateForShow,
+                    'name': littleBaby[i].name,
+                    'group': littleBaby[i].group,
+                    'img': littleBaby[i].image,
+                    'colorGroup': littleBaby[i].colorGroup,
+                    'place': littleBaby[i].place,
+                    'googleMap': littleBaby[i].map,
+                    click: function () {
+                        if ($(this).attr('googleMap') !== undefined) {
+                            $('.mapWrapper').show();
+                            $('.eventPlacePop').hide();
+                            $('.mapPlace').html('Where? ');
+                            $('.eventMapPop').attr('href', $(this).attr('googleMap'));
+                        } else {
+                            $('.mapWrapper').hide();
+                            $('.eventPlacePop').show();
+                            $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
+                            $('.eventMapPop').attr('href', '#');
+                        }
+                        $('.eventMapPop').html($(this).attr('place'));
+                        $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
+                        $('.eventNamePop').html($(this).attr('name'));
+                        $('#eventCover').attr('src', ('./images' + $(this).attr('img'))).show();
+                        $('#eventDetails').fadeIn(150);
+                    }
+                }).appendTo(containerToAppend);
+                break;
+            case 3:
+                var eventWrapper = $('<div>', {
+                    class: eventClass,
+                    'date': littleBaby[i].date,
+                    'dateText': dateForShow,
+                    'name': littleBaby[i].name,
+                    'group': littleBaby[i].group,
+                    'img': littleBaby[i].image,
+                    'video': littleBaby[i].video,
+                    'type': littleBaby[i].type,
+                    'colorGroup': littleBaby[i].colorGroup,
+                    'place': littleBaby[i].place,
+                }).appendTo(containerToAppend);
+                break;
+        }
 
         if ($(eventWrapper).attr('colorGroup') % 2 == 0) {
             $(eventWrapper).addClass('odd');
@@ -283,157 +248,93 @@ function buildEvents(div, wrapper, arr) {
             $(eventWrapper).addClass('even');
         }
 
-        var eventName = $('<p>', {
-            class: 'eventName',
-            text: littleBaby[i].name
-        }).appendTo(eventWrapper);
-
-        var eventDate = $('<p>', {
-            class: 'eventDate',
-            text: 'Date: ' + dateForShow
-        }).appendTo(eventWrapper);
-
-        var eventImgWrapper = $('<div>', {
-            class: 'eventImgWrapper',
-        }).appendTo(eventWrapper);
-
-        var eventImg = $('<img>', {
-            class: 'eventImg',
-            alt: 'eventImg',
-            src: './images' + littleBaby[i].image
-        }).appendTo(eventImgWrapper);
-    }
-}
-
-function buildVideos(div, wrapper, arr) {
-    var videos = arr[0].videos;
-    var newDate = new Date();
-    var year = newDate.getFullYear();
-    var counter = 1;
-
-    var videoHeader = $('<h2>', {
-        text: 'Videos'
-    }).appendTo(wrapper);
-
-    var btnWrapper = $('<div>', {
-        class: 'btnWrapper'
-    }).appendTo(wrapper);
-
-    var sortContainer = $('<div>', {
-        class: 'sortContainer',
-    }).appendTo(btnWrapper);
-
-    var sortContent = $('<div>', {
-        class: 'sortContent',
-    }).appendTo(sortContainer);
-
-    var sortBtn = $('<button>', {
-        class: 'sortBtn',
-        text: 'Sort',
-        click: function () {
-            sort($(this).parent().parent(), 3);
+        switch(num) {
+            case 1:
+                var eventName = $('<p>', {
+                    class: 'eventName',
+                    text: littleBaby[i].name
+                }).appendTo(eventWrapper);
+        
+                var eventDate = $('<p>', {
+                    class: 'eventDate',
+                    text: 'Date: ' + dateForShow
+                }).appendTo(eventWrapper);
+        
+                var eventImgWrapper = $('<div>', {
+                    class: 'eventImgWrapper',
+                }).appendTo(eventWrapper);
+        
+                var eventImg = $('<img>', {
+                    class: 'eventImg',
+                    alt: 'eventImg',
+                    src: './images' + littleBaby[i].image
+                }).appendTo(eventImgWrapper);
+                break;
+    
+            case 2:
+                var galleryImg = $('<img>', {
+                    class: 'galleryImg',
+                    src: './images' + littleBaby[i].image
+                }).appendTo(eventWrapper);
+                break;
+            case 3:
+                var playPauseWrapper = $('<div>', {
+                    class: 'playPauseWrapper',
+                }).appendTo(eventWrapper);
+        
+                var playVideoBtn = $('<img>', {
+                    class: 'playVideoBtn',
+                    src: './images/playPause2.png',
+                    click: function () {
+                        var thisVideo = $(this).parent().parent().find($('.video')).get(0);
+        
+                        if (thisVideo.paused) {
+                            $.each($('.video'), function (key, value) {
+                                $(this).trigger('pause');
+                            });
+                            $(thisVideo).trigger('play');
+                        } else {
+                            $(thisVideo).trigger('pause');
+                        }
+                    }
+                }).appendTo(playPauseWrapper);
+        
+                var rewindBtn = $('<img>', {
+                    class: 'rewindBtn',
+                    src: './images/stop.png',
+                    click: function () {
+                        var thisVideo = $(this).parent().parent().find($('.video')).get(0);
+                        $(thisVideo).trigger('pause');
+                        $(thisVideo)[0].currentTime = 0;
+                    }
+                }).appendTo(playPauseWrapper);
+        
+                var video = $('<video>', {
+                    class: 'video',
+                    id: littleBaby[i].name,
+                    src: './videos' + littleBaby[i].video,
+                    click: function () {
+                        $('.mapWrapper').hide();
+                        $('.eventPlacePop').show();
+                        $('.eventMapPop').attr('href', '#');
+                        $('.eventDatePop').html('Date: ' + $(this).parent().attr('dateText'));
+                        $('.eventNamePop').html($(this).parent().attr('name'));
+                        $('#eventCover').hide();
+                        $('.eventPlacePop').html('Where? ' + $(this).parent().attr('place'));
+                        $('#eventDetails').fadeIn(150);
+                    }
+                }).appendTo(eventWrapper);
+        
+        
+                $.each($('.videoContainer'), function (key, value) {
+                    if ($(this).attr('type') == 'mobile') {
+                        $(this).addClass('mobileVideo');
+                    } else {
+                        $(this).addClass('desktopVideo');
+                    }
+                });
+                break;
         }
-    }).appendTo(btnWrapper);
-
-    var dateSortBtn = $('<button>', {
-        class: 'dateSortBtn',
-        text: 'Sort By Date',
-        click: function () {
-            sortEvents($('#videoContainer'), 'date', 1);
-        }
-    }).appendTo(sortContent);
-
-    var videoWrapper = $('<div>', {
-        class: 'videoWrapper',
-    }).appendTo(wrapper);
-
-    for (var i = 0; i < videos.length; i++) {
-
-        var date = new Date(videos[i].date);
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var yearToShow = date.getFullYear();
-
-        if (day < 10) {
-            day = '0' + day
-        } else {
-            day = day;
-        }
-
-        if (month < 10) {
-            month = '0' + month
-        } else {
-            month = month;
-        }
-
-        var dateForShow = day + '/' + month + '/' + yearToShow;
-
-        var videoContainer = $('<div>', {
-            class: 'videoContainer',
-            'date': videos[i].date,
-            'dateText': dateForShow,
-            'name': videos[i].name,
-            'group': videos[i].group,
-            'video': videos[i].video,
-            'place': videos[i].place,
-            'type': videos[i].type,
-        }).appendTo(videoWrapper);
-
-        var playPauseWrapper = $('<div>', {
-            class: 'playPauseWrapper',
-        }).appendTo(videoContainer);
-
-        var playVideoBtn = $('<img>', {
-            class: 'playVideoBtn',
-            src: './images/playPause2.png',
-            click: function () {
-                var thisVideo = $(this).parent().parent().find($('.video')).get(0);
-
-                if (thisVideo.paused) {
-                    $.each($('.video'), function (key, value) {
-                        $(this).trigger('pause');
-                    });
-                    $(thisVideo).trigger('play');
-                } else {
-                    $(thisVideo).trigger('pause');
-                }
-            }
-        }).appendTo(playPauseWrapper);
-
-        var rewindBtn = $('<img>', {
-            class: 'rewindBtn',
-            src: './images/stop.png',
-            click: function () {
-                var thisVideo = $(this).parent().parent().find($('.video')).get(0);
-                $(thisVideo).trigger('pause');
-                $(thisVideo)[0].currentTime = 0;
-            }
-        }).appendTo(playPauseWrapper);
-
-        var video = $('<video>', {
-            class: 'video',
-            id: videos[i].name,
-            src: './videos' + videos[i].video,
-            click: function () {
-                $('.mapWrapper').hide();
-                $('.eventPlacePop').show();
-                $('.eventMapPop').attr('href', '#');
-                $('.eventDatePop').html('Date: ' + $(this).parent().attr('dateText'));
-                $('.eventNamePop').html($(this).parent().attr('name'));
-                $('#eventCover').hide();
-                $('.eventPlacePop').html('Where? ' + $(this).parent().attr('place'));
-                $('#eventDetails').fadeIn(150);
-            }
-        }).appendTo(videoContainer);
-
-
-        $.each($('.videoContainer'), function (key, value) {
-            if ($(this).attr('type') == 'mobile') {
-                $(this).addClass('mobileVideo');
-            } else {
-                $(this).addClass('desktopVideo');
-            }
-        });
     }
 }
 
