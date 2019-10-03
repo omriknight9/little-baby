@@ -2,7 +2,8 @@
 {
     "gallery" : [
 	{ "name": "Pregnancy Test", "date": "08/15/2019", "place": "Home", "image": "/pregnancyTest.jpeg", "group": 1.1},
-	{ "name": "First Check", "date": "08/28/2019", "place": "מרכז בריאות האישה", "map": "https://www.google.co.il/maps/place/Refa'el+Eitan+St+4,+Holon/",  "image": "/firstCheck.jpeg", "group": 1.2}
+	{ "name": "First Check", "date": "08/28/2019", "place": "מרכז בריאות האישה", "map": "http://bit.ly/2nbvJEa",  "image": "/firstCheck.jpg", "group": 1.2},
+	{ "name": "Second Check", "date": "09/02/2019", "place": "בית רופאים", "map": "http://bit.ly/2pzgHsG",  "image": "/secondCheck.jpg", "group": 1.3, "colorGroup": 1}
 
     ]
 }
