@@ -3,7 +3,7 @@
     "littleBaby" : [
 	{ "name": "Pregnancy Test", "date": "08/15/2019", "place": "Home", "image": "/pregnancyTest.jpeg", "group": 1.1, "colorGroup" : 1},
 	{ "name": "First Check", "date": "08/28/2019", "place": "מרכז בריאות האישה", "map": "http://bit.ly/2nbvJEa",  "image": "/firstCheck.jpg", "group": 1.2, "colorGroup": 1},
-	{ "name": "Second Check", "date": "09/02/2019", "place": "בית רופאים", "map": "http://bit.ly/2pzgHsG",  "image": "/secondCheck.jpg", "group": 1.3, "colorGroup": 1}
-
+	{ "name": "Second Check", "date": "10/02/2019", "place": "בית רופאים", "map": "http://bit.ly/2pzgHsG",  "image": "/secondCheck.jpg", "group": 1.3, "colorGroup": 1},
+	{ "name": "Nuchal Translucency", "date": "10/07/2019", "place": "מרכז בריאות האישה", "map": "http://bit.ly/2nbvJEa",  "image": "/nuchalTranslucency.jpeg", "group": 1.4, "colorGroup": 1}
     ]
 }
