@@ -64,20 +64,68 @@ main {
     color: palevioletred;
 }
 
-#boyImg {
+#boyWrapper {
     position: absolute;
     left: 1rem;
     top: 1rem;
+}
+
+#boyImg {
     width: 140px;
     height: 140px;
 }
 
-#girlImg {
+#boyThoughtWrapper {
+    display: none;
+}
+
+#boyThoughtImg {
+    width: 200px;
+    height: 130px;
+    position: absolute;
+    top: -.5rem;
+    left: 5rem;
+}
+
+#boyThought {
+    position: absolute;
+    top: 0;
+    left: 7rem;
+    z-index: 1;
+    width: 100%;
+    text-shadow: 1px 0 0 black;
+}
+
+#girlWrapper {
     position: absolute;
     right: 1rem;
     top: 1rem;
+}
+
+#girlImg {
     width: 100px;
     height: 140px;
+}
+
+#girlThoughtWrapper {
+    display: none;
+}
+
+#girlThoughtImg {
+    width: 200px;
+    height: 130px;
+    position: absolute;
+    top: -.5rem;
+    right: 5rem;
+}
+
+#girlThought {
+    position: absolute;
+    top: 0;
+    right: 9rem;
+    z-index: 1;
+    width: 100%;
+    text-shadow: 1px 0 0 black;
 }
 
 h1 {
@@ -340,9 +388,9 @@ p {
 }
 
 .eventImg {
-    width: 13rem;
-    height: 13rem;
-    border-radius: 100px;
+    width: 10rem;
+    height: 14rem;
+    border-radius: 10px;
     box-shadow: 0 1px 3px 3px #848484;
 }
 
@@ -679,8 +727,8 @@ p {
     }
 
     .eventImg {
-        width: 10rem;
-        height: 10rem;
+        width: 8rem;
+        height: 12rem;
     }
 
     .mobileVideo {
@@ -720,8 +768,8 @@ p {
     }
 
     .eventImg {
-        width: 8rem;
-        height: 8rem;
+        width: 6rem;
+        height: 9rem;
     }
     
     .playPauseWrapper {
@@ -756,6 +804,10 @@ p {
         top: 5rem;
     }
 
+    .eventName {
+        font-size: 1.1rem !important;
+    }
+
     .eventPlacePop {
         top: 6rem;
     }
@@ -784,8 +836,8 @@ p {
     }
 
     .eventImg {
-        width: 6rem;
-        height: 6rem;
+        width: 5rem;
+        height: 8rem;
     }
 
     .mobileVideo {
