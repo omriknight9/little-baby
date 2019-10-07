@@ -15,6 +15,22 @@ $(document).ready(function (event) {
 
     loadJson();
 
+    if ($(window).width() > 765) {
+        $('#boyWrapper, #boySpan').hover(function() {
+            $('#boyThoughtWrapper').fadeIn('fast');
+            
+        }, function(){
+            $('#boyThoughtWrapper').fadeOut('fast');
+        })
+
+        $('#girlWrapper, #girlSpan').hover(function() {
+            $('#girlThoughtWrapper').fadeIn('fast');
+            
+        }, function(){
+            $('#girlThoughtWrapper').fadeOut('fast');
+        })
+    }
+
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
     }
