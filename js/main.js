@@ -1,5 +1,5 @@
 
-var littleMan = [];
+var littleBaby = [];
 var gallery = [];
 var videos = [];
 var counter = 1;
@@ -16,18 +16,19 @@ $(document).ready(function (event) {
     loadJson();
 
     if ($(window).width() > 765) {
-        $('#boyWrapper, #boySpan').hover(function() {
-            $('#boyThoughtWrapper').fadeIn('fast');
-            
-        }, function(){
-            $('#boyThoughtWrapper').fadeOut('fast');
-        })
 
-        $('#girlWrapper, #girlSpan').hover(function() {
+        $('#girlWrapper').hover(function() {
             $('#girlThoughtWrapper').fadeIn('fast');
             
         }, function(){
             $('#girlThoughtWrapper').fadeOut('fast');
+        })
+
+        $('#girlWrapper2').hover(function() {
+            $('#girlThoughtWrapper2').fadeIn('fast');
+            
+        }, function(){
+            $('#girlThoughtWrapper2').fadeOut('fast');
         })
     }
 
@@ -52,9 +53,9 @@ $(document).ready(function (event) {
 
 function loadJson() {
     $.get('./lists/littleBaby.txt', function (data) {
-        littleMan.push(JSON.parse(data));
+        littleBaby.push(JSON.parse(data));
         setTimeout(function () {
-            buildEvents('eventsWrapper', $('#eventContainer'), littleMan, 1);
+            buildEvents('eventsWrapper', $('#eventContainer'), littleBaby, 1);
         }, 500);
     });
 
@@ -537,7 +538,7 @@ function sortEvents(container, elem1, kind) {
                 $('.spinnerWrapper').show();
                 $('.groupSortBtn').css('pointer-events', 'none');
                 setTimeout(function () {
-                    littleMan = [];
+                    littleBaby = [];
                     gallery = [];
                     videos = [];
                     loadJson();
