@@ -443,7 +443,28 @@ p {
     flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
     justify-content: space-around;
+}
 
+.refreshWrapper {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    display: none;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    justify-content: center;
+    z-index: 999;
+}
+
+.desktopRefresh {
+    top: 10rem;
+}
+
+.mobileRefresh {
+    top: 7rem;
 }
 
 .video {
@@ -459,6 +480,11 @@ p {
 }
 
 .rewindBtn {
+    width: 80px;
+    cursor: pointer;
+}
+
+.refreshBtn {
     width: 80px;
     cursor: pointer;
 }
@@ -669,6 +695,10 @@ p {
 }
 
 @media only screen and (max-width: 765px) {
+
+    .refreshWrapper {
+        top: 40%;
+    }
 
     .videoWrapper {
         display: block;
