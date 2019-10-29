@@ -326,6 +326,19 @@ function buildEvents(div, wrapper, arr, num) {
                 }).appendTo(eventWrapper);
                 break;
             case 3:
+
+                var refreshClass;
+
+                $.each($('.videoContainer'), function (key, value) {
+                    if ($(this).attr('type') == 'mobile') {
+                        $(this).addClass('mobileVideo');
+                        refreshClass = 'mobileRefresh';
+                    } else {
+                        $(this).addClass('desktopVideo');
+                        refreshClass = 'desktopRefresh';
+                    }
+                });
+
                 var playPauseWrapper = $('<div>', {
                     class: 'playPauseWrapper',
                 }).appendTo(eventWrapper);
@@ -335,14 +348,15 @@ function buildEvents(div, wrapper, arr, num) {
                     src: './images/playPause2.png',
                     click: function () {
                         var thisVideo = $(this).parent().parent().find($('.video')).get(0);
-        
                         if (thisVideo.paused) {
                             $.each($('.video'), function (key, value) {
                                 $(this).trigger('pause');
                             });
                             $(thisVideo).trigger('play');
+                            $(thisVideo).parent().find($('.refreshWrapper')).css('display', 'none');
                         } else {
                             $(thisVideo).trigger('pause');
+                            $(thisVideo).parent().find($('.refreshWrapper')).css('display', 'flex');
                         }
                     }
                 }).appendTo(playPauseWrapper);
@@ -354,8 +368,27 @@ function buildEvents(div, wrapper, arr, num) {
                         var thisVideo = $(this).parent().parent().find($('.video')).get(0);
                         $(thisVideo).trigger('pause');
                         $(thisVideo)[0].currentTime = 0;
+                        $(thisVideo).parent().find($('.refreshWrapper')).css('display', 'none');
                     }
                 }).appendTo(playPauseWrapper);
+
+                var refreshWrapper = $('<div>', {
+                    class: 'refreshWrapper ' + refreshClass,
+                }).appendTo(eventWrapper);
+
+                var refreshBtn = $('<img>', {
+                    class: 'refreshBtn',
+                    src: './images/refresh.png',
+                    click: function () {
+                        var thisVideo = $(this).parent().parent().find($('.video')).get(0);
+                        $.each($('.video'), function (key, value) {
+                            $(this).trigger('pause');
+                        });
+                        $(thisVideo)[0].currentTime = 0;
+                        $(thisVideo).trigger('play');
+                        $(thisVideo).parent().find($('.refreshWrapper')).css('display', 'none');
+                    }
+                }).appendTo(refreshWrapper);
         
                 var video = $('<video>', {
                     class: 'video',
@@ -373,14 +406,6 @@ function buildEvents(div, wrapper, arr, num) {
                     }
                 }).appendTo(eventWrapper);
         
-        
-                $.each($('.videoContainer'), function (key, value) {
-                    if ($(this).attr('type') == 'mobile') {
-                        $(this).addClass('mobileVideo');
-                    } else {
-                        $(this).addClass('desktopVideo');
-                    }
-                });
                 break;
         }
     }
