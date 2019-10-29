@@ -1,9 +1,9 @@
 
 {
     "videos" : [
-	{ "name": "video1", "date": "08/15/2019", "place": "Home", "video": "/video1.mp4", "group": 1.1, "type": "mobile"},
-	{ "name": "video2", "date": "08/28/2019", "place": "Assaf's Home",  "video": "/video2.mp4", "group": 1.2, "type": "mobile"},
-	{ "name": "video3", "date": "09/01/2019", "place": "My Home",  "video": "/typing2.mp4", "group": 1.3, "type": "desktop"}
+	{ "name": "Early Systems Review", "date": "10/27/2019", "place": "Ultrasound", "video": "/earlySystemsReview.mp4", "group": 1.1, "type": "desktop"},
+	{ "name": "Early Systems Review", "date": "10/27/2019", "place": "Ultrasound", "video": "/earlySystemsReview2.mp4", "group": 1.2, "type": "desktop"},
+	{ "name": "Early Systems Review", "date": "10/27/2019", "place": "Ultrasound", "video": "/earlySystemsReview3.mp4", "group": 1.3, "type": "desktop"}
 
     ]
 }
