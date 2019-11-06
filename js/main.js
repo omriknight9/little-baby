@@ -1,19 +1,36 @@
 
-var littleBaby = [];
-var gallery = [];
-var videos = [];
-var counter = 1;
-var eventsCounter = 1;
-var galleryCounter = 1;
-var videosCounter = 1;
+let littleBaby = [];
+let gallery = [];
+let videos = [];
+let counter = 1;
+let eventsCounter = 1;
+let galleryCounter = 1;
+let videosCounter = 1;
 
-var valid;
-var d = new Date();
-var currentYear = d.getFullYear();
+let lang = 1;
+
+let valid;
+let d = new Date();
+let currentYear = d.getFullYear();
 
 $(document).ready(function (event) {
 
     loadJson();
+
+    if (window.location.href.indexOf("lang=he") > -1) {
+        setTimeout(function(){
+            changeToHeb();
+            window.history.pushState('page2', 'Title', 'index.html');
+        }, 600)
+    }
+
+    $('#langBtnHe').click(function () {
+        changeToHeb();
+    })
+
+    $('#langBtnEn').click(function () {
+        changeToEng();
+    })
 
     if ($(window).width() > 765) {
 
@@ -51,6 +68,25 @@ $(document).ready(function (event) {
     }, 1500);
 });
 
+function showBaby() {
+    $('.container').empty();
+    littleBaby = [];
+    gallery = [];
+    videos = [];
+    counter = 1;
+    $('.spinnerWrapper').show();
+
+    // setTimeout(function () {
+        loadJson();
+    // }, 1500);
+
+    // $('.sortContainer').fadeOut('fast');
+
+    eventsCounter = 1;
+    galleryCounter = 1;
+    videosCounter = 1;
+}
+
 function loadJson() {
     $.get('./lists/littleBaby.txt', function (data) {
         littleBaby.push(JSON.parse(data));
@@ -85,15 +121,28 @@ function buildEvents(div, wrapper, arr, num) {
     switch(num) {
         case 1:
             littleBaby = arr[0].littleBaby;
-            headerText = 'Events';
+            if (lang == 1) {
+                headerText = 'Events';
+            } else {
+                headerText = 'אירועים';
+            }
+
         break;
         case 2:
             littleBaby = arr[0].gallery;
-            headerText = 'Gallery';
+            if (lang == 1) {
+                headerText = 'Gallery';
+            } else {
+                headerText = 'גלריה';
+            }
         break;
         case 3:
             littleBaby = arr[0].videos;
-            headerText = 'Videos';
+            if (lang == 1) {
+                headerText = 'Videos';
+            } else {
+                headerText = 'סרטונים';
+            }
         break;
     }
 
@@ -116,9 +165,26 @@ function buildEvents(div, wrapper, arr, num) {
         class: 'sortContent',
     }).appendTo(sortContainer);
 
+    let sortBtnText;
+    let dateSortBtnText;
+    let nameSortText;
+    let groupSortBtnText;
+
+    if (lang == 1) {
+        sortBtnText = 'Sort';
+        dateSortBtnText = 'By Date';
+        nameSortText = 'By Name';
+        groupSortBtnText = 'By Group';
+    } else {
+        sortBtnText = 'סדר';
+        dateSortBtnText = 'לפי תאריך';
+        nameSortText = 'לפי שם';
+        groupSortBtnText = 'לפי קבוצה';
+    }
+
     var sortBtn = $('<button>', {
         class: 'sortBtn',
-        text: 'Sort',
+        text: sortBtnText,
         click: function () {
             sort($(this).parent().parent(), num);
         }
@@ -126,7 +192,7 @@ function buildEvents(div, wrapper, arr, num) {
 
     var dateSortBtn = $('<button>', {
         class: 'dateSortBtn',
-        text: 'Sort By Date',
+        text: dateSortBtnText,
         click: function () {
             sortEvents($(wrapper), 'date', 1);
         }
@@ -136,7 +202,7 @@ function buildEvents(div, wrapper, arr, num) {
         case 1:
             var nameSortBtn = $('<button>', {
                 class: 'nameSortBtn',
-                text: 'Sort By Name',
+                text: nameSortText,
                 click: function () {
                     sortEvents($(wrapper), 'name', 2);
                 }
@@ -144,7 +210,7 @@ function buildEvents(div, wrapper, arr, num) {
         
             var groupSortBtn = $('<button>', {
                 class: 'groupSortBtn',
-                text: 'Sort By Group',
+                text: groupSortBtnText,
                 click: function () {
                     sortEvents($(wrapper), 'group', 3);
                 }
@@ -218,6 +284,7 @@ function buildEvents(div, wrapper, arr, num) {
                     'date': littleBaby[i].date,
                     'dateText': dateForShow,
                     'name': littleBaby[i].name,
+                    'nameHeb': littleBaby[i].nameHeb,
                     'group': littleBaby[i].group,
                     'img': littleBaby[i].image,
                     'colorGroup': littleBaby[i].colorGroup,
@@ -227,17 +294,33 @@ function buildEvents(div, wrapper, arr, num) {
                         if ($(this).attr('googleMap') !== undefined) {
                             $('.mapWrapper').show();
                             $('.eventPlacePop').hide();
-                            $('.mapPlace').html('Where? ');
+                            if (lang == 1) {
+                                $('.mapPlace').html('Where? ');
+                            } else {
+                                $('.mapPlace').html('איפה? ');
+                            }
+
                             $('.eventMapPop').attr('href', $(this).attr('googleMap'));
                         } else {
                             $('.mapWrapper').hide();
                             $('.eventPlacePop').show();
-                            $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
+                            if (lang == 1) {
+                                $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
+                            } else {
+                                $('.eventPlacePop').html('איפה? ' + $(this).attr('place'));
+                            }
+
                             $('.eventMapPop').attr('href', '#');
                         }
                         $('.eventMapPop').html($(this).attr('place'));
-                        $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
-                        $('.eventNamePop').html($(this).attr('name'));
+                        if (lang == 1) {
+                            $('.eventNamePop').html($(this).attr('name'));
+                            $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
+                        } else {
+                            $('.eventNamePop').html($(this).attr('nameHeb'));
+                            $('.eventDatePop').html('תאריך: ' + $(this).attr('dateText'));
+                        }
+   
                         $('#eventCover').attr('src', ('./images' + $(this).attr('img'))).show();
                         $('#eventDetails').fadeIn(150);
                     }
@@ -255,6 +338,7 @@ function buildEvents(div, wrapper, arr, num) {
                         'date': littleBaby[i].date,
                         'dateText': dateForShow,
                         'name': littleBaby[i].name,
+                        'nameHeb': littleBaby[i].nameHeb,
                         'group': littleBaby[i].group,
                         'img': littleBaby[i].image,
                         'colorGroup': littleBaby[i].colorGroup,
@@ -264,17 +348,32 @@ function buildEvents(div, wrapper, arr, num) {
                             if ($(this).attr('googleMap') !== undefined) {
                                 $('.mapWrapper').show();
                                 $('.eventPlacePop').hide();
-                                $('.mapPlace').html('Where? ');
+                                if (lang == 1) {
+                                    $('.mapPlace').html('Where? ');
+                                } else {
+                                    $('.mapPlace').html('איפה? ');
+                                }
+     
                                 $('.eventMapPop').attr('href', $(this).attr('googleMap'));
                             } else {
                                 $('.mapWrapper').hide();
                                 $('.eventPlacePop').show();
-                                $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
+                                if (lang == 1) {
+                                    $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
+                                } else {
+                                    $('.eventPlacePop').html('איפה? ' + $(this).attr('place'));
+                                }
+
                                 $('.eventMapPop').attr('href', '#');
                             }
                             $('.eventMapPop').html($(this).attr('place'));
-                            $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
-                            $('.eventNamePop').html($(this).attr('name'));
+                            if (lang == 1) {
+                                $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
+                                $('.eventNamePop').html($(this).attr('name'));
+                            } else {
+                                $('.eventDatePop').html('תאריך: ' + $(this).attr('dateText'));
+                                $('.eventNamePop').html($(this).attr('nameHeb'));
+                            }
                             $('#eventCover').attr('src', ('./images' + $(this).attr('img'))).show();
                             $('#eventDetails').fadeIn(150);
                         }
@@ -286,6 +385,7 @@ function buildEvents(div, wrapper, arr, num) {
                     'date': littleBaby[i].date,
                     'dateText': dateForShow,
                     'name': littleBaby[i].name,
+                    'nameHeb': littleBaby[i].nameHeb,
                     'group': littleBaby[i].group,
                     'img': littleBaby[i].image,
                     'video': littleBaby[i].video,
@@ -298,14 +398,28 @@ function buildEvents(div, wrapper, arr, num) {
 
         switch(num) {
             case 1:
+                var finalName;
+                if (lang == 1) {
+                    finalName = littleBaby[i].name;
+                } else {
+                    finalName = littleBaby[i].nameHeb;
+                }
+
+                var finalDate;
+                if (lang == 1) {
+                    finalDate = 'Date: ' + dateForShow
+                } else {
+                    finalDate = 'תאריך: ' + dateForShow
+                }
+
                 var eventName = $('<p>', {
                     class: 'eventName',
-                    text: littleBaby[i].name
+                    text: finalName
                 }).appendTo(eventWrapper);
         
                 var eventDate = $('<p>', {
                     class: 'eventDate',
-                    text: 'Date: ' + dateForShow
+                    text: finalDate
                 }).appendTo(eventWrapper);
         
                 var eventImgWrapper = $('<div>', {
@@ -339,6 +453,19 @@ function buildEvents(div, wrapper, arr, num) {
                     }
                 });
 
+                let finalVideoName;
+
+                if (lang == 1) {
+                    finalVideoName = littleBaby[i].name;
+                } else {
+                    finalVideoName = littleBaby[i].nameHeb;
+                }
+                
+                var videoHeader = $('<h3>', {
+                    class: 'videoHeader',
+                    text: finalVideoName
+                }).appendTo(eventWrapper);
+
                 var playPauseWrapper = $('<div>', {
                     class: 'playPauseWrapper',
                 }).appendTo(eventWrapper);
@@ -348,6 +475,12 @@ function buildEvents(div, wrapper, arr, num) {
                     src: './images/playPause2.png',
                     click: function () {
                         var thisVideo = $(this).parent().parent().find($('.video')).get(0);
+
+                        $(thisVideo).on('ended', function() {
+                            $(thisVideo)[0].currentTime = 0;
+                            $(thisVideo).parent().find($('.refreshWrapper')).css('display', 'flex');
+                        })
+
                         if (thisVideo.paused) {
                             $.each($('.video'), function (key, value) {
                                 $(this).trigger('pause');
@@ -398,10 +531,17 @@ function buildEvents(div, wrapper, arr, num) {
                         $('.mapWrapper').hide();
                         $('.eventPlacePop').show();
                         $('.eventMapPop').attr('href', '#');
-                        $('.eventDatePop').html('Date: ' + $(this).parent().attr('dateText'));
-                        $('.eventNamePop').html($(this).parent().attr('name'));
+                        if (lang == 1) {
+                            $('.eventDatePop').html('Date: ' + $(this).parent().attr('dateText'));
+                            $('.eventPlacePop').html('Where? ' + $(this).parent().attr('place'));
+                            $('.eventNamePop').html($(this).parent().attr('name'));
+                        } else {
+                            $('.eventDatePop').html('תאריך: ' + $(this).parent().attr('dateText'));
+                            $('.eventPlacePop').html('איפה? ' + $(this).parent().attr('place'));
+                            $('.eventNamePop').html($(this).parent().attr('nameHeb'));
+                        }
+
                         $('#eventCover').hide();
-                        $('.eventPlacePop').html('Where? ' + $(this).parent().attr('place'));
                         $('#eventDetails').fadeIn(150);
                     }
                 }).appendTo(eventWrapper);
