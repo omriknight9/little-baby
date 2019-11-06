@@ -1,0 +1,32 @@
+
+body {
+    font-family: 'David Libre', serif;
+}
+
+.popupBtn {
+    font-family: 'David Libre', serif;
+}
+
+.container {
+    direction: rtl;
+}
+
+header p {
+    direction: rtl;
+}
+
+.eventDateת {
+    font-size: 1.3rem;
+}
+
+.eventPlacePop {
+    direction: rtl;
+}
+
+.mapWrapper {
+    direction: rtl;
+}
+
+.popUpInfo p {
+    font-size: 1.3rem;
+}
