@@ -448,7 +448,7 @@ p {
     flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
     justify-content: center;
-    z-index: 999;
+    z-index: 2;
 }
 
 .desktopRefresh {
