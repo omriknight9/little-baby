@@ -22,7 +22,6 @@ $(document).ready(function (event) {
         weeksBetween();
     },1000);
 
-
     if (window.location.href.indexOf("lang=he") > -1) {
         setTimeout(function(){
             changeToHeb();
@@ -81,8 +80,10 @@ function showBaby() {
     videos = [];
     counter = 1;
     $('.spinnerWrapper').show();
-
+    
     loadJson();
+    calculateInterval();
+    weeksBetween();
 
     eventsCounter = 1;
     galleryCounter = 1;
@@ -90,6 +91,17 @@ function showBaby() {
 }
 
 function loadJson() {
+
+    $('h2').hide();
+    $('#timePassed').hide();
+    $('#weeksCount').hide();
+
+    if (lang == 1) {
+        $('#timePassedHeader').html('Time Passed');
+    } else {
+        $('#timePassedHeader').html('זמן שעבר');
+    }
+
     $.get('./lists/littleBaby.txt', function (data) {
         littleBaby.push(JSON.parse(data));
         setTimeout(function () {
@@ -111,6 +123,12 @@ function loadJson() {
             $('.spinnerWrapper').hide();
         }, 1500);
     });
+
+    setTimeout(function () {
+        $('h2').show();
+        $('#timePassed').show();
+        $('#weeksCount').show();
+    }, 1000)
 }
 
 Date.testTime = function(date1, date2) {
@@ -126,16 +144,42 @@ Date.testTime = function(date1, date2) {
         out.push(diff + ' ' + intervals[i]);
     }
 
-    for (let i = 0; i < out.length; i++) {
+    if (lang == 1) {
+        for (let i = 0; i < out.length; i++) {
 
-        if (out[i].includes("1 ")) {  
-            if (out[i].includes("11 ") || out[i].includes("21 ") ||out[i].includes("31 ") ||out[i].includes("41 ") ||out[i].includes("51 ")) {
-                
-            } else {
-                out[i] = out[i].substring(0, out[i].length - 1);
+            if (out[i].includes("1 ")) {  
+                if (out[i].includes("11 ") || out[i].includes("21 ") ||out[i].includes("31 ") ||out[i].includes("41 ") ||out[i].includes("51 ")) {
+                    
+                } else {
+                    out[i] = out[i].substring(0, out[i].length - 1);
+                }
+            }
+        }
+    } else {
+
+        for (let i = 0; i < out.length; i++) {
+            out[i] = out[i].replace('months', 'חודשים');
+            out[i] = out[i].replace('weeks', 'שבועות');
+            out[i] = out[i].replace('days', 'ימים');
+            out[i] = out[i].replace('hours', 'שעות');
+            out[i] = out[i].replace('minutes', 'דקות');
+            out[i] = out[i].replace('seconds', 'שניות');
+
+            if (out[i].includes("1 ")) {  
+                if (out[i].includes("11 ") || out[i].includes("21 ") ||out[i].includes("31 ") ||out[i].includes("41 ") ||out[i].includes("51 ")) {
+                    
+                } else {
+                    out[i] = out[i].replace('חודשים', 'חודש');
+                    out[i] = out[i].replace('שבועות', 'שבוע');
+                    out[i] = out[i].replace('ימים', 'יום');
+                    out[i] = out[i].replace('שעות', 'שעה');
+                    out[i] = out[i].replace('דקות', 'דקה');
+                    out[i] = out[i].replace('שניות', 'שניה');
+                }
             }
         }
     }
+
     return out.join(', ');
 }
 
@@ -162,7 +206,11 @@ function calculateInterval() {
     let date1 = new Date(2019, 06, 09);
     let date2 = new Date();
     let weeks = Math.round((date2 - date1) / (7 * 24 * 60 * 60 * 1000));
-    $('#weeksCount').html('Week: ' + weeks);
+    if (lang == 1) {
+        $('#weeksCount').html('Week: ' + weeks);
+    } else {
+        $('#weeksCount').html('שבוע: ' + weeks);
+    }
 }
 
 function buildEvents(div, wrapper, arr, num) {
@@ -755,13 +803,16 @@ function sortEvents(container, elem1, kind) {
                 break;
             case 3:
                 $('.spinnerWrapper').show();
+                $('h2').hide();
+                $('#timePassed').hide();
+                $('#weeksCount').hide();
                 $('.groupSortBtn').css('pointer-events', 'none');
                 setTimeout(function () {
                     littleBaby = [];
                     gallery = [];
                     videos = [];
                     loadJson();
-                    $('.spinnerWrapper').hide();
+                    // $('.spinnerWrapper').hide();
                 }, 500);
                 break;
         }
