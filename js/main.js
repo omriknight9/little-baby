@@ -120,7 +120,7 @@ Date.testTime = function(date1, date2) {
     intervals = ['months','weeks','days', 'hours', 'minutes', 'seconds'],
     out = [];
 
-    for(var i=0; i < intervals.length; i++) {
+    for(var i = 0; i < intervals.length; i++) {
         var diff = a.diff(b, intervals[i]);
         b.add(diff, intervals[i]);
         out.push(diff + ' ' + intervals[i]);
@@ -128,8 +128,12 @@ Date.testTime = function(date1, date2) {
 
     for (let i = 0; i < out.length; i++) {
 
-        if (out[i].includes("1 ")) {
-            out[i] = out[i].substring(0, out[i].length - 1);
+        if (out[i].includes("1 ")) {  
+            if (out[i].includes("11 ") || out[i].includes("21 ") ||out[i].includes("31 ") ||out[i].includes("41 ") ||out[i].includes("51 ")) {
+                
+            } else {
+                out[i] = out[i].substring(0, out[i].length - 1);
+            }
         }
     }
     return out.join(', ');
