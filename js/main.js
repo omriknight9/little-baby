@@ -17,6 +17,12 @@ $(document).ready(function (event) {
 
     loadJson();
 
+    setInterval(function(){
+        calculateInterval();
+        weeksBetween();
+    },1000);
+
+
     if (window.location.href.indexOf("lang=he") > -1) {
         setTimeout(function(){
             changeToHeb();
@@ -76,11 +82,7 @@ function showBaby() {
     counter = 1;
     $('.spinnerWrapper').show();
 
-    // setTimeout(function () {
-        loadJson();
-    // }, 1500);
-
-    // $('.sortContainer').fadeOut('fast');
+    loadJson();
 
     eventsCounter = 1;
     galleryCounter = 1;
@@ -109,6 +111,54 @@ function loadJson() {
             $('.spinnerWrapper').hide();
         }, 1500);
     });
+}
+
+Date.testTime = function(date1, date2) {
+    let b = moment(date1);
+    let a = moment(date2);
+
+    intervals = ['months','weeks','days', 'hours', 'minutes', 'seconds'],
+    out = [];
+
+    for(var i=0; i < intervals.length; i++) {
+        var diff = a.diff(b, intervals[i]);
+        b.add(diff, intervals[i]);
+        out.push(diff + ' ' + intervals[i]);
+    }
+
+    for (let i = 0; i < out.length; i++) {
+
+        if (out[i].includes("1 ")) {
+            out[i] = out[i].substring(0, out[i].length - 1);
+        }
+    }
+    return out.join(', ');
+}
+
+function calculateInterval() {
+    let start = new Date(2019, 06, 09);
+    let end = new Date();
+   
+    let finalDate = Date.testTime(start, end);
+    let withoutMonths = finalDate.substr(finalDate.indexOf(',') + 1);
+    let withoutWeeks = withoutMonths.substr(withoutMonths.indexOf(',') + 1);
+    let withoutDays = withoutWeeks.substr(withoutWeeks.indexOf(',') + 1);
+    let withoutHours = withoutDays.substr(withoutDays.indexOf(',') + 1);
+    let months = finalDate.substr(0, finalDate.indexOf(','));
+    let weeks = withoutMonths.substr(0, withoutMonths.indexOf(','));
+    let days = withoutWeeks.substr(0, withoutWeeks.indexOf(','));
+    let hours = withoutDays.substr(0, withoutDays.indexOf(','));
+    let minutes = withoutHours.substr(0, withoutHours.indexOf(','));
+    let seconds = withoutHours.substr(withoutHours.indexOf(',') + 1);
+
+    $('#timePassed').html(finalDate);
+ }
+
+ function weeksBetween() {
+    let date1 = new Date(2019, 06, 09);
+    let date2 = new Date();
+    let weeks = Math.round((date2 - date1) / (7 * 24 * 60 * 60 * 1000));
+    $('#weeksCount').html('Week: ' + weeks);
 }
 
 function buildEvents(div, wrapper, arr, num) {
