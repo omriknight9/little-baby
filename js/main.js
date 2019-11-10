@@ -7,6 +7,8 @@ let eventsCounter = 1;
 let galleryCounter = 1;
 let videosCounter = 1;
 
+let out;
+
 let lang = 1;
 
 let valid;
@@ -17,10 +19,10 @@ $(document).ready(function (event) {
 
     loadJson();
 
-    setInterval(function(){
+    // setInterval(function(){
         calculateInterval();
-        weeksBetween();
-    },1000);
+        // weeksBetween();
+    // },1000);
 
     if (window.location.href.indexOf("lang=he") > -1) {
         setTimeout(function(){
@@ -83,7 +85,7 @@ function showBaby() {
     
     loadJson();
     calculateInterval();
-    weeksBetween();
+    // weeksBetween();
 
     eventsCounter = 1;
     galleryCounter = 1;
@@ -145,42 +147,88 @@ Date.testTime = function(date1, date2) {
     }
 
     if (lang == 1) {
-        for (let i = 0; i < out.length; i++) {
+        for (let x = 0; x < out.length; x++) {
 
-            if (out[i].includes("1 ")) {  
-                if (out[i].includes("11 ") || out[i].includes("21 ") ||out[i].includes("31 ") ||out[i].includes("41 ") ||out[i].includes("51 ")) {
+            if (out[x].includes("1 ")) {  
+                if (out[x].includes("11 ") || out[x].includes("21 ") ||out[x].includes("31 ") ||out[x].includes("41 ") ||out[x].includes("51 ")) {
                     
                 } else {
-                    out[i] = out[i].substring(0, out[i].length - 1);
+                    out[x] = out[x].substring(0, out[x].length - 1);
+                }
+            }
+        }
+
+    } else {
+
+        for (let u = 0; u < out.length; u++) {
+            out[u] = out[u].replace('months', 'חודשים');
+            out[u] = out[u].replace('weeks', 'שבועות');
+            out[u] = out[u].replace('days', 'ימים');
+            out[u] = out[u].replace('hours', 'שעות');
+            out[u] = out[u].replace('minutes', 'דקות');
+            out[u] = out[u].replace('seconds', 'שניות');
+
+        }
+    }
+
+    out = out.join(', ');
+    return out;
+   
+}
+
+Date.testTime2 = function(date1, date2) {
+    let b = moment(date1);
+    let a = moment(date2);
+
+    intervals2 = ['weeks','days', 'hours', 'minutes', 'seconds'],
+    out2 = [];
+
+    
+    for(var j = 0; j < intervals2.length; j++) {
+        var diff2 = a.diff(b, intervals2[j]);
+        b.add(diff2, intervals2[j]);
+        out2.push(diff2 + ' ' + intervals2[j]);
+    }
+
+    if (lang == 1) {
+
+        for (let z = 0; z < out2.length; z++) {
+
+            if (out[z].includes("1 ")) {  
+                if (out2[z].includes("11 ") || out2[z].includes("21 ") ||out2[z].includes("31 ") ||out2[z].includes("41 ") ||out2[z].includes("51 ")) {
+                    
+                } else {
+                    out2[z] = out2[z].substring(0, out2[z].length - 1);
                 }
             }
         }
     } else {
 
-        for (let i = 0; i < out.length; i++) {
-            out[i] = out[i].replace('months', 'חודשים');
-            out[i] = out[i].replace('weeks', 'שבועות');
-            out[i] = out[i].replace('days', 'ימים');
-            out[i] = out[i].replace('hours', 'שעות');
-            out[i] = out[i].replace('minutes', 'דקות');
-            out[i] = out[i].replace('seconds', 'שניות');
+        for (let y = 0; y < out2.length; y++) {
+            out2[y] = out2[y].replace('months', 'חודשים');
+            out2[y] = out2[y].replace('weeks', 'שבועות');
+            out2[y] = out2[y].replace('days', 'ימים');
+            out2[y] = out2[y].replace('hours', 'שעות');
+            out2[y] = out2[y].replace('minutes', 'דקות');
+            out2[y] = out2[y].replace('seconds', 'שניות');
 
-            if (out[i].includes("1 ")) {  
-                if (out[i].includes("11 ") || out[i].includes("21 ") ||out[i].includes("31 ") ||out[i].includes("41 ") ||out[i].includes("51 ")) {
+            if (out2[y].includes("1 ")) {  
+                if (out2[y] = out2[y].includes("11 ") || out2[y].includes("21 ") || out2[y].includes("31 ") || out2[y].includes("41 ") || out2[y].includes("51 ")) {
                     
                 } else {
-                    out[i] = out[i].replace('חודשים', 'חודש');
-                    out[i] = out[i].replace('שבועות', 'שבוע');
-                    out[i] = out[i].replace('ימים', 'יום');
-                    out[i] = out[i].replace('שעות', 'שעה');
-                    out[i] = out[i].replace('דקות', 'דקה');
-                    out[i] = out[i].replace('שניות', 'שניה');
+                    out2[y] = out2[y].replace('חודשים', 'חודש');
+                    out2[y] = out2[y].replace('שבועות', 'שבוע');
+                    out2[y] = out2[y].replace('ימים', 'יום');
+                    out2[y] = out2[y].replace('שעות', 'שעה');
+                    out2[y] = out2[y].replace('דקות', 'דקה');
+                    out2[y] = out2[y].replace('שניות', 'שניה');
                 }
             }
         }
     }
 
-    return out.join(', ');
+    out2 = out2.join(', ');
+    return out2;
 }
 
 function calculateInterval() {
@@ -200,18 +248,18 @@ function calculateInterval() {
     let seconds = withoutHours.substr(withoutHours.indexOf(',') + 1);
 
     $('#timePassed').html(finalDate);
- }
 
- function weeksBetween() {
-    let date1 = new Date(2019, 06, 09);
-    let date2 = new Date();
-    let weeks = Math.round((date2 - date1) / (7 * 24 * 60 * 60 * 1000));
+    let finalDate2 = Date.testTime2(start, end);
+    let weeks2 = finalDate2.substr(0, finalDate2.indexOf(','));
+    let weeks3 = weeks2.substr(0, weeks2.indexOf(' '));
+    let withoutWeeks2 = finalDate2.substr(finalDate2.indexOf(',') + 1);
+    let days2 = withoutWeeks2.substr(0, withoutWeeks2.indexOf(','));
     if (lang == 1) {
-        $('#weeksCount').html('Week: ' + weeks);
+        $('#weeksCount').html('Week: ' + weeks3 + ' And' + days2);
     } else {
-        $('#weeksCount').html('שבוע: ' + weeks);
+        $('#weeksCount').html('שבוע: ' + weeks3 + ' ו' + days2);
     }
-}
+ }
 
 function buildEvents(div, wrapper, arr, num) {
 
