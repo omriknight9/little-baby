@@ -21,7 +21,7 @@ $(document).ready(function (event) {
 
     setInterval(function(){
         calculateInterval();
-    },1000);
+    }, 1000);
 
     if (window.location.href.indexOf("lang=he") > -1) {
         setTimeout(function(){
@@ -83,7 +83,10 @@ function showBaby() {
     $('.spinnerWrapper').show();
     
     loadJson();
-    calculateInterval();
+
+    setInterval(function(){
+        calculateInterval();
+    }, 1000);
 
     eventsCounter = 1;
     galleryCounter = 1;
