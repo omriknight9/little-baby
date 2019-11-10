@@ -1,13 +1,13 @@
-﻿function changeToHeb() {
+function changeToHeb() {
 
     lang = 2;
     $('#langBtnHe').css('pointer-events', 'none');
     $('#langBtnEn').css('pointer-events', 'all');
 
     $("head").append("<link rel='stylesheet' type='text/css' href='css/main_he.css' id='hebCss'/>");
-    $('title').html('תינוק קטן');
+    $('title').html('תינוקת קטנה');
 
-    $('h1').hide().html('תינוק קטן').fadeIn('slow');
+    $('h1').hide().html('תינוקת קטנה').fadeIn('slow');
 
     $('header p').hide().html('זו' + "<span id='girlSpan'> בת!</span>").fadeIn('slow');
 
