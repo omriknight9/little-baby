@@ -19,10 +19,9 @@ $(document).ready(function (event) {
 
     loadJson();
 
-    // setInterval(function(){
+    setInterval(function(){
         calculateInterval();
-        // weeksBetween();
-    // },1000);
+    },1000);
 
     if (window.location.href.indexOf("lang=he") > -1) {
         setTimeout(function(){
@@ -85,7 +84,6 @@ function showBaby() {
     
     loadJson();
     calculateInterval();
-    // weeksBetween();
 
     eventsCounter = 1;
     galleryCounter = 1;
