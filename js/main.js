@@ -19,9 +19,9 @@ $(document).ready(function (event) {
 
     loadJson();
 
-    setInterval(function(){
+    // setInterval(function(){
         calculateInterval();
-    }, 1000);
+    // }, 1000);
 
     if (window.location.href.indexOf("lang=he") > -1) {
         setTimeout(function(){
@@ -84,9 +84,9 @@ function showBaby() {
     
     loadJson();
 
-    setInterval(function(){
+    // setInterval(function(){
         calculateInterval();
-    }, 1000);
+    // }, 1000);
 
     eventsCounter = 1;
     galleryCounter = 1;
@@ -195,7 +195,7 @@ Date.testTime2 = function(date1, date2) {
 
         for (let z = 0; z < out2.length; z++) {
 
-            if (out[z].includes("1 ")) {  
+            if (out2[z].includes("1 ")) {  
                 if (out2[z].includes("11 ") || out2[z].includes("21 ") ||out2[z].includes("31 ") ||out2[z].includes("41 ") ||out2[z].includes("51 ")) {
                     
                 } else {
@@ -214,8 +214,8 @@ Date.testTime2 = function(date1, date2) {
             out2[y] = out2[y].replace('seconds', 'שניות');
 
             if (out2[y].includes("1 ")) {  
-                if (out2[y] = out2[y].includes("11 ") || out2[y].includes("21 ") || out2[y].includes("31 ") || out2[y].includes("41 ") || out2[y].includes("51 ")) {
-                    
+                if (out2[y].includes("11 ") || out2[y].includes("21 ") || out2[y].includes("31 ") || out2[y].includes("41 ") || out2[y].includes("51 ")) {
+
                 } else {
                     out2[y] = out2[y].replace('חודשים', 'חודש');
                     out2[y] = out2[y].replace('שבועות', 'שבוע');
