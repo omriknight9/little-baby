@@ -737,6 +737,13 @@ p {
     }
 }
 
+@media only screen and (max-width: 600px) {
+    #timePassed {
+        width: 80%;
+        margin: auto;
+    }
+}
+
 @media only screen and (max-width: 550px) {
 
     #langBtnEn {
