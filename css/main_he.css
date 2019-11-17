@@ -1,36 +1,12 @@
 
-body {
+body, .popupBtn {
     font-family: 'David Libre', serif;
 }
 
-.popupBtn {
-    font-family: 'David Libre', serif;
-}
-
-.container {
+.container, header p, #weeksCount, #monthCount, .eventPlacePop, .mapWrapper {
     direction: rtl;
 }
 
-header p {
-    direction: rtl;
-}
-
-#timePassed, #weeksCount, #monthCount {
-    direction: rtl;
-}
-
-.eventDateת {
-    font-size: 1.3rem;
-}
-
-.eventPlacePop {
-    direction: rtl;
-}
-
-.mapWrapper {
-    direction: rtl;
-}
-
-.popUpInfo p {
+.eventDate, .popUpInfo p  {
     font-size: 1.3rem;
 }
