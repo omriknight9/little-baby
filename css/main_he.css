@@ -15,7 +15,7 @@ header p {
     direction: rtl;
 }
 
-#timePassed, #weeksCount {
+#timePassed, #weeksCount, #monthCount {
     direction: rtl;
 }
 
