@@ -23,6 +23,8 @@ $(document).ready(function (event) {
     body = document.getElementById('body');
     var hammertime = new Hammer(body);
     hammertime.get('pinch').set({ enable: true });
+    hammertime.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+    hammertime.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
     // setInterval(function(){
         calculateInterval();
     // }, 1000);
