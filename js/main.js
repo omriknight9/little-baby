@@ -84,33 +84,7 @@ function hammerIt(el) {
     var ham = new Hammer( el, {
         domEvents: true
     });
-    var width = 1900;
-    var height = 400;
-    var left = 950;
-    var top = 220;
-
     ham.get('pinch').set({ enable: true });
-
-    ham.on( "pinch", function( e ) {
-    console.log( "pinch" );
-    if ( width * e.scale >= 300 ) {
-        var img = el.childNodes[1];
-        img.style.width = (width * e.scale) + 'px';
-        img.style.marginLeft = (-left * e.scale) + 'px';
-        img.style.height = (height * e.scale) + 'px';
-        img.style.marginTop = (-top * e.scale) + 'px';
-        }
-        console.log( e.scale );
-    });
-
-    ham.on( "pinchend", function( e ) {
-    width = width * e.scale;
-    height = height * e.scale;
-    left = left * e.scale;
-    top = top * e.scale;
-    console.log( width );
-    });
-
 }
 
 // function hammerIt(elm) {
