@@ -79,8 +79,6 @@ $(document).ready(function (event) {
     }, 1500);
 });
 
-
-
 function hammerIt(elm) {
     hammertime = new Hammer(elm, {});
     hammertime.get('pinch').set({
@@ -160,6 +158,8 @@ function hammerIt(elm) {
             el.style.webkitTransform = transform;
         }
     });
+
+    $('#main').css('touch-action', 'unset');
 }
 
 function showBaby() {
