@@ -20,7 +20,7 @@ $(document).ready(function (event) {
 
     loadJson();
 
-    body = document.getElementById('body2');
+    body = document.getElementById('body');
 
     hammerIt(body);
 
