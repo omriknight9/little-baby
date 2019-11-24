@@ -22,7 +22,7 @@ $(document).ready(function (event) {
 
     body = document.getElementById('body');
     var hammertime = new Hammer(body);
-
+    hammertime.get('pinch').set({ enable: true });
     // setInterval(function(){
         calculateInterval();
     // }, 1000);
