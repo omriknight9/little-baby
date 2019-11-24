@@ -14,10 +14,14 @@ let lang = 1;
 let valid;
 let d = new Date();
 let currentYear = d.getFullYear();
+let body;
 
 $(document).ready(function (event) {
 
     loadJson();
+
+    body = document.getElementById('body');
+    var hammertime = new Hammer(body);
 
     // setInterval(function(){
         calculateInterval();
