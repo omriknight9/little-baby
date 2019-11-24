@@ -870,12 +870,12 @@
             [da]
         ],
         cssProps: {
-            userSelect: "none",
-            touchSelect: "none",
-            touchCallout: "none",
-            contentZooming: "none",
-            userDrag: "none",
-            tapHighlightColor: "rgba(0,0,0,0)"
+            // userSelect: "none",
+            // touchSelect: "none",
+            // touchCallout: "none",
+            // contentZooming: "none",
+            // userDrag: "none",
+            // tapHighlightColor: "rgba(0,0,0,0)"
         }
     };
     var ub = 1,
