@@ -14,15 +14,15 @@ let lang = 1;
 let valid;
 let d = new Date();
 let currentYear = d.getFullYear();
-let body;
+let main;
 
 $(document).ready(function (event) {
 
     loadJson();
 
-    body = document.getElementById('body');
+    main = document.getElementById('main');
 
-    hammerIt(body);
+    hammerIt(main);
 
     // setInterval(function(){
         calculateInterval();
