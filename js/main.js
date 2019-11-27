@@ -284,7 +284,7 @@ function buildEvents(div, wrapper, arr, num) {
         nameSortText = 'By Name';
         groupSortBtnText = 'By Group';
     } else {
-        sortBtnText = 'סדר';
+        sortBtnText = 'מיין';
         dateSortBtnText = 'לפי תאריך';
         nameSortText = 'לפי שם';
         groupSortBtnText = 'לפי קבוצה';
