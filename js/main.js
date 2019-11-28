@@ -312,7 +312,12 @@ function buildEvents(div, wrapper, arr, num) {
                 class: 'nameSortBtn',
                 text: nameSortText,
                 click: function () {
-                    sortEvents($(wrapper), 'name', 2);
+                    if (lang == 1) {
+                        sortEvents($(wrapper), 'name', 2);
+                    } else {
+                        sortEvents($(wrapper), 'nameHeb', 2);
+                    }
+
                 }
             }).appendTo(sortContent);
         
@@ -783,11 +788,12 @@ function sortEvents(container, elem1, kind) {
                 switch (counter) {
                     case 1:
                         ids.sort(function (a, b) {
-                            if (a.idNum > b.idNum) {
-                                return 1;
-                            } else {
-                                return -1;
-                            }
+                            return a.idNum.localeCompare(b.idNum);
+                            // if (a.idNum > b.idNum) {
+                            //     return 1;
+                            // } else {
+                            //     return -1;
+                            // }
                         });
 
                         counter = 2;
@@ -795,11 +801,12 @@ function sortEvents(container, elem1, kind) {
 
                     case 2:
                         ids.sort(function (a, b) {
-                            if (a.idNum < b.idNum) {
-                                return 1;
-                            } else {
-                                return -1;
-                            }
+                            return b.idNum.localeCompare(a.idNum);
+                            // if (a.idNum < b.idNum) {
+                            //     return 1;
+                            // } else {
+                            //     return -1;
+                            // }
                         });
                         counter = 1;
                         break;
