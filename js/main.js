@@ -438,12 +438,6 @@ function buildEvents(div, wrapper, arr, num) {
                         $('#eventDetails').fadeIn(150);
                     }
                 }).appendTo(containerToAppend);
-
-                if ($(eventWrapper).attr('colorGroup') % 2 == 0) {
-                    $(eventWrapper).addClass('odd');
-                } else {
-                    $(eventWrapper).addClass('even');
-                }
                 break;
             case 2:
                     var eventWrapper = $('<div>', {
