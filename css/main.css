@@ -526,7 +526,7 @@ p {
     display: block;
     position: fixed;
     width: 40rem;
-    background: url(../images/test.jpg) no-repeat center center fixed;
+    background: url(../images/whiteBackground.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
