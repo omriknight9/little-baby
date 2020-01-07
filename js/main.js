@@ -120,7 +120,7 @@ function startImgInterval() {
                 $('#weekNum').html('שבוע: ' + 1);
             }
             $('#weekImg').attr('currentImg', weekImgCounter);
-            $('#weekImg').attr('src', '../images/weekPhotos/' + 1 + '.jpeg');
+            $('#weekImg').attr('src', '/images/weekPhotos/' + 1 + '.jpeg');
             weekImgCounter++;
         } else {
             if (lang == 1) {
@@ -129,7 +129,7 @@ function startImgInterval() {
                 console.log('LANG 2!!!')
                 $('#weekNum').html('שבוע: ' + weekImgCounter);
             }
-            $('#weekImg').attr('src', '../images/weekPhotos/' + weekImgCounter + '.jpeg');
+            $('#weekImg').attr('src', '/images/weekPhotos/' + weekImgCounter + '.jpeg');
             weekImgCounter++;
         }
 
@@ -155,7 +155,7 @@ function nextWeekImg() {
     weekImgCounter = $('#weekImg').attr('currentimg');
     if (weekImgCounter == 12) {
         weekImgCounter = 1;
-        $('#weekImg').attr('src', '../images/weekPhotos/' + 1 + '.jpeg');
+        $('#weekImg').attr('src', '/images/weekPhotos/' + 1 + '.jpeg');
         if (lang == 1) {
             $('#weekNum').html('Week: ' + 1);
         } else {
@@ -171,7 +171,7 @@ function nextWeekImg() {
         } else {
             $('#weekNum').html('שבוע: ' + weekImgCounter);
         }
-        $('#weekImg').attr('src', '../images/weekPhotos/' + weekImgCounter + '.jpeg');
+        $('#weekImg').attr('src', '/images/weekPhotos/' + weekImgCounter + '.jpeg');
         $('#weekImg').attr('currentImg', weekImgCounter);
     }
 }
@@ -180,7 +180,7 @@ function prevWeekImg() {
     weekImgCounter = $('#weekImg').attr('currentimg');
     if (weekImgCounter == 1) {
         weekImgCounter = 12;
-        $('#weekImg').attr('src', '../images/weekPhotos/' + 12 + '.jpeg');
+        $('#weekImg').attr('src', '/images/weekPhotos/' + 12 + '.jpeg');
         if (lang == 1) {
             $('#weekNum').html('Week: ' + 12);
         } else {
@@ -196,7 +196,7 @@ function prevWeekImg() {
         } else {
             $('#weekNum').html('שבוע: ' + weekImgCounter);
         }
-        $('#weekImg').attr('src', '../images/weekPhotos/' + weekImgCounter + '.jpeg');
+        $('#weekImg').attr('src', '/images/weekPhotos/' + weekImgCounter + '.jpeg');
         $('#weekImg').attr('currentImg', weekImgCounter);
     }
 }
