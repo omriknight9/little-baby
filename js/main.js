@@ -15,6 +15,9 @@ let valid;
 let d = new Date();
 let currentYear = d.getFullYear();
 
+let weekImgCounter = 1;
+let imgInterval;
+
 $(document).ready(function (event) {
 
     loadJson();
@@ -28,12 +31,32 @@ $(document).ready(function (event) {
         }, 600)
     }
 
+    if (window.location.href.indexOf("ShowImages") > -1) {
+        startImgInterval();
+    }
+
     $('#langBtnHe').click(function () {
         changeToHeb();
+        if (window.location.href.indexOf("ShowImages") > -1) {
+            $('#weekPhotos').hide();
+            stopImgInterval();
+            setTimeout(function(){
+                $('#weekPhotos').show();
+                startImgInterval();
+            }, 1500);
+        }
     })
 
     $('#langBtnEn').click(function () {
         changeToEng();
+        if (window.location.href.indexOf("ShowImages") > -1) {
+            $('#weekPhotos').hide();
+            stopImgInterval();
+            setTimeout(function(){
+                $('#weekPhotos').show();
+                startImgInterval();
+            }, 1500);
+        }
     })
 
     if ($(window).width() > 765) {
@@ -69,8 +92,114 @@ $(document).ready(function (event) {
         $('.spinnerWrapper').hide();
         $('.searchContainer').show();
         $('#eventContainer').css('display', 'flex');
+        // startImgInterval();
     }, 1500);
 });
+
+function startImgInterval() {
+    $('#weekBtn').attr('onclick', 'stopImgInterval()');
+    if (lang == 1) {
+        $('#weekBtn').html('Stop');
+        $('#nextWeekBtn').html('Next');
+        $('#prevWeekBtn').html('Previous');
+        
+    } else {
+        $('#weekBtn').html('עצור');
+        $('#nextWeekBtn').html('הבא');
+        $('#prevWeekBtn').html('הקודם');
+    }
+
+    imgInterval = setInterval(function() {
+        $('#weekImg').attr('currentImg', weekImgCounter);
+        $('#weekPhotos').show();
+        if (weekImgCounter == 13) {
+            weekImgCounter = 1;
+            if (lang == 1) {
+                $('#weekNum').html('Week: ' + 1);
+            } else {
+                $('#weekNum').html('שבוע: ' + 1);
+            }
+            $('#weekImg').attr('currentImg', weekImgCounter);
+            $('#weekImg').attr('src', '../images/weekPhotos/' + 1 + '.jpeg');
+            weekImgCounter++;
+        } else {
+            if (lang == 1) {
+                $('#weekNum').html('Week: ' + weekImgCounter);
+            } else {
+                console.log('LANG 2!!!')
+                $('#weekNum').html('שבוע: ' + weekImgCounter);
+            }
+            $('#weekImg').attr('src', '../images/weekPhotos/' + weekImgCounter + '.jpeg');
+            weekImgCounter++;
+        }
+
+        
+    }, 500);
+
+    $('#nextWeekBtn, #prevWeekBtn').hide();
+}
+
+function stopImgInterval() {
+    clearInterval(imgInterval);
+    $('#weekBtn').attr('onclick', 'startImgInterval()');
+    if (lang == 1) {
+        $('#weekBtn').html('Resume');
+    } else {
+        $('#weekBtn').html('המשך');
+    }
+
+    $('#nextWeekBtn, #prevWeekBtn').show();
+}
+
+function nextWeekImg() {
+    weekImgCounter = $('#weekImg').attr('currentimg');
+    if (weekImgCounter == 12) {
+        weekImgCounter = 1;
+        $('#weekImg').attr('src', '../images/weekPhotos/' + 1 + '.jpeg');
+        if (lang == 1) {
+            $('#weekNum').html('Week: ' + 1);
+        } else {
+            $('#weekNum').html('שבוע: ' + 1);
+        }
+        $('#weekImg').attr('currentImg', weekImgCounter);
+        weekImgCounter++;
+        
+    } else {
+        weekImgCounter++;
+        if (lang == 1) {
+            $('#weekNum').html('Week: ' + weekImgCounter);
+        } else {
+            $('#weekNum').html('שבוע: ' + weekImgCounter);
+        }
+        $('#weekImg').attr('src', '../images/weekPhotos/' + weekImgCounter + '.jpeg');
+        $('#weekImg').attr('currentImg', weekImgCounter);
+    }
+}
+
+function prevWeekImg() {
+    weekImgCounter = $('#weekImg').attr('currentimg');
+    if (weekImgCounter == 1) {
+        weekImgCounter = 12;
+        $('#weekImg').attr('src', '../images/weekPhotos/' + 12 + '.jpeg');
+        if (lang == 1) {
+            $('#weekNum').html('Week: ' + 12);
+        } else {
+            $('#weekNum').html('שבוע: ' + 12);
+        }
+        $('#weekImg').attr('currentImg', weekImgCounter);
+        weekImgCounter--;
+        
+    } else {
+        weekImgCounter--;
+        if (lang == 1) {
+            $('#weekNum').html('Week: ' + weekImgCounter);
+        } else {
+            $('#weekNum').html('שבוע: ' + weekImgCounter);
+        }
+        $('#weekImg').attr('src', '../images/weekPhotos/' + weekImgCounter + '.jpeg');
+        $('#weekImg').attr('currentImg', weekImgCounter);
+    }
+}
 
 function showBaby() {
     $('.container').empty();
