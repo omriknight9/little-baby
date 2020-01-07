@@ -133,7 +133,7 @@ function startImgInterval() {
         }
 
         
-    }, 500);
+    }, 1000);
 
     $('#nextWeekBtn, #prevWeekBtn').hide();
 }
