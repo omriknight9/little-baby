@@ -127,6 +127,29 @@ h1 {
     margin: 0;
 }
 
+#weekPhotos {
+    margin-top: 2rem;
+    text-align: center;
+    display: none;
+}
+
+#weekNum {
+    font-size: 1.7rem;
+}
+
+#weekImg {
+    width: 300px;
+    border-radius: 5px;
+}
+
+#weekBtn {
+    display: block;
+}
+
+#nextWeekBtn, #prevWeekBtn {
+    display: none;
+}
+
 #weeksCount, #monthCount {
     font-size: 1.3rem;
     margin: 0;
