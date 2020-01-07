@@ -15,7 +15,6 @@
     <script type="text/javascript" src="js/moment.js"></script>
     <script src="js/main.js"></script>
     
-
 </head>
 <body>
 
@@ -43,7 +42,6 @@
     </header>
 
     <main id="main">
-
         <div class="spinnerWrapper">
             <div class="loader loader-1">
                 <div class="loader-outter"></div>
@@ -53,6 +51,17 @@
 
         <p id="monthCount"></p>
         <p id="weeksCount"></p>
+
+        <div id="weekPhotos">
+            <p id="weekNum"></p>
+            <img id="weekImg" src="" alt="week image" currentimg="1">    
+            <div class="btnWrapper">
+                <button id="prevWeekBtn" onclick="prevWeekImg()"></button>
+                <button id="weekBtn"></button>
+                <button id="nextWeekBtn" onclick="nextWeekImg()"></button>
+            </div>
+
+        </div>
 
         <div class="container" id="eventContainer"></div>
         <div class="container" id="galleryContainer"></div>
