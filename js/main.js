@@ -531,10 +531,13 @@ function buildEvents(div, wrapper, arr, num) {
                     'colorGroup': littleBaby[i].colorGroup,
                     'place': littleBaby[i].place,
                     'googleMap': littleBaby[i].map,
+                    'waze': littleBaby[i].waze,
                     click: function () {
                         if ($(this).attr('googleMap') !== undefined) {
                             $('.mapWrapper').show();
                             $('.eventPlacePop').hide();
+                            $('#wazeWrapper').show();
+                            $('.wazeMap').attr('href', $(this).attr('waze'));
                             if (lang == 1) {
                                 $('.mapPlace').html('Where? ');
                             } else {
@@ -544,6 +547,7 @@ function buildEvents(div, wrapper, arr, num) {
                             $('.eventMapPop').attr('href', $(this).attr('googleMap'));
                         } else {
                             $('.mapWrapper').hide();
+                            $('#wazeWrapper').hide();
                             $('.eventPlacePop').show();
                             if (lang == 1) {
                                 $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
@@ -579,10 +583,13 @@ function buildEvents(div, wrapper, arr, num) {
                         'colorGroup': littleBaby[i].colorGroup,
                         'place': littleBaby[i].place,
                         'googleMap': littleBaby[i].map,
+                        'waze': littleBaby[i].waze,
                         click: function () {
                             if ($(this).attr('googleMap') !== undefined) {
                                 $('.mapWrapper').show();
                                 $('.eventPlacePop').hide();
+                                $('#wazeWrapper').show();
+                                $('.wazeMap').attr('href', $(this).attr('waze'));
                                 if (lang == 1) {
                                     $('.mapPlace').html('Where? ');
                                 } else {
@@ -593,6 +600,7 @@ function buildEvents(div, wrapper, arr, num) {
                             } else {
                                 $('.mapWrapper').hide();
                                 $('.eventPlacePop').show();
+                                $('#wazeWrapper').hide();
                                 if (lang == 1) {
                                     $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
                                 } else {
@@ -760,11 +768,12 @@ function buildEvents(div, wrapper, arr, num) {
         
                 var video = $('<video>', {
                     class: 'video',
-                    id: littleBaby[i].name,
+                    id: 'video' + littleBaby[i].id,
                     src: './videos' + littleBaby[i].video,
                     click: function () {
                         $('.mapWrapper').hide();
                         $('.eventPlacePop').show();
+                        $('#wazeWrapper').hide();
                         $('.eventMapPop').attr('href', '#');
                         if (lang == 1) {
                             $('.eventDatePop').html('Date: ' + $(this).parent().attr('dateText'));
