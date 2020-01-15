@@ -776,6 +776,10 @@ p {
         width: 80%;
         margin: auto;
     }
+
+    .popUpInfo h2 {
+        font-size: 1.4rem;
+    }
 }
 
 @media only screen and (max-width: 550px) {
@@ -858,10 +862,6 @@ p {
 
 @media only screen and (max-width: 400px) {
 
-    .popUpInfo h2 {
-        font-size: 1.4rem;
-    }
-
     .galleryImg {
         width: 300px;
         height: 450px;
@@ -889,6 +889,19 @@ p {
 }
 
 @media only screen and (max-width: 370px) {
+
+    #wazeImg {
+        width: 40px;
+    }
+
+    .mapPlace, .eventDatePop, .eventMapPop, .eventPlacePop {
+        font-size: 1.2rem;
+    }
+
+    .popUpInfo h2 {
+        font-size: 1.2rem;
+    }
+
     #girlImg {
         top: 2.5rem;
         width: 40px;
