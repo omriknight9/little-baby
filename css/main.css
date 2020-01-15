@@ -590,6 +590,18 @@ p {
     margin-bottom: 0;
 }
 
+#wazeWrapper {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    z-index: 2;
+}
+
+#wazeImg {
+    width: 50px;
+}
+
 .linksWrapper {
     display: flex;
     box-sizing: border-box;
