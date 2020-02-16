@@ -303,12 +303,12 @@ function buildList(wrapper, containter, arr) {
             name: laborBag[i].name,
             click: function() {
                 let star = $(this).find('.listItemCheck');
-                if (star.attr('src') == '../images/unchecked.png') {
+                if (star.attr('src') == './images/unchecked.png') {
                     localStorage.setItem('itemId' + $(this).attr('numId'), $(this).attr('numId'));
-                    $(this).find('.listItemCheck').attr('src', '../images/checked.png');
+                    $(this).find('.listItemCheck').attr('src', './images/checked.png');
                 } else {
                     localStorage.removeItem('itemId' + $(this).attr('numId'), $(this).attr('numId'));
-                    $(this).find('.listItemCheck').attr('src', '../images/unchecked.png');
+                    $(this).find('.listItemCheck').attr('src', './images/unchecked.png');
                 }
             }
         }).appendTo(listWrapper);
@@ -320,7 +320,7 @@ function buildList(wrapper, containter, arr) {
 
         let listItemCheck = $('<img>', {
             class: 'listItemCheck',
-            src: '../images/unchecked.png'
+            src: './images/unchecked.png'
         }).appendTo(listItemWrapper);
 
         $.each($('.listItemWrapper'), function (key, value) {
