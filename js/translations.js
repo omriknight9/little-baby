@@ -1,5 +1,5 @@
 function changeToHeb() {
-
+    
     lang = 2;
     $('#langBtnHe').css('pointer-events', 'none');
     $('#langBtnEn').css('pointer-events', 'all');
@@ -13,6 +13,7 @@ function changeToHeb() {
 
     $('.popupBtn').hide().html('סגור').fadeIn('slow');
 
+    $('#listImg').hide();
     showBaby();
 }
 
@@ -30,5 +31,6 @@ function changeToEng() {
     
     $('.popupBtn').hide().html('Close').fadeIn('slow');
 
+    $('#listImg').hide();
     showBaby();
 }
