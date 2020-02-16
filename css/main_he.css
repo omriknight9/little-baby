@@ -10,3 +10,35 @@ body, .popupBtn {
 .eventDate, .popUpInfo p  {
     font-size: 1.3rem;
 }
+
+.goToTopBtn {
+    right: unset;
+    left: 1.5rem;
+}
+
+#listImg {
+    left: unset;
+    right: 0;
+}
+
+.listItem {
+    margin-left: unset;
+    text-align: right;
+}
+
+.listItemCheck {
+    right: unset;
+    top: -.8rem;
+    left: 0;
+}
+
+@media only screen and (max-width: 765px) {
+
+    .listItem {
+        font-size: 1.2rem;
+    }
+
+    .listItemCheck {
+        top: -.2rem;
+    }
+}
