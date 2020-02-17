@@ -260,6 +260,8 @@ function loadJson() {
 
 function loadList() {
 
+    $('#listContainer').empty();
+
     $.get('./lists/laborBag.txt', function (data) {
         laborBagList.push(JSON.parse(data));
         setTimeout(function () {
