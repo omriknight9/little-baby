@@ -109,14 +109,6 @@ h1 {
 	margin-top: 2rem;
 }
 
-#listImg {
-    display: none;
-    width: 160px;
-    cursor: pointer;
-    position: absolute;
-    left: 0;
-}
-
 .btnWrapper {
     position: relative;
     display: flex;
@@ -358,44 +350,6 @@ p {
 
 #eventContainer {
     display: none;
-}
-
-#listContainer {
-    display: unset;
-}
-
-.listWrapper {
-    width: 90%;
-    margin: 0 auto 2rem auto;
-    border: 1px solid black;
-    padding: .5rem;
-    border-radius: 5px;
-    background-color:rgba(255, 255, 255, 0.3);
-}
-
-.listItemWrapper {
-    position: relative;
-    border-bottom: 1px solid black;
-    cursor: pointer;
-}
-
-.listItemWrapper:last-child {
-    border-bottom: unset;
-}
-
-.listItem {
-    padding-bottom: 1rem;
-    /* margin-left: 1rem; */
-    font-size: 1.5rem;
-    text-align: left;
-    width: 87%;
-}
-
-.listItemCheck {
-    width: 60px;
-    position: absolute;
-    top: -.2rem;
-    right: 0;
 }
 
 .groupWrapper {
@@ -783,15 +737,6 @@ p {
 
 @media only screen and (max-width: 765px) {
 
-    .listItem {
-        font-size: 1.2rem;
-    }
-
-    .listItemCheck {
-        width: 40px;
-        top: .2rem;
-    }
-
     .refreshWrapper {
         top: 40%;
     }
@@ -884,10 +829,6 @@ p {
 
 @media only screen and (max-width: 460px) {
 
-    #listImg {
-        width: 80px;
-    }
-
     .popupCont {
         top: 2%;
     }
@@ -921,10 +862,6 @@ p {
 
 @media only screen and (max-width: 400px) {
 
-    .listWrapper {
-        width: 90%;
-    }
-
     .galleryImg {
         width: 300px;
         height: 450px;
@@ -952,10 +889,6 @@ p {
 }
 
 @media only screen and (max-width: 370px) {
-
-    #listImg {
-        width: 70px;
-    }
 
     #wazeImg {
         width: 40px;
