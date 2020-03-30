@@ -2,7 +2,6 @@
 let littleBaby = [];
 let gallery = [];
 let videos = [];
-let laborBagList = [];
 let counter = 1;
 let eventsCounter = 1;
 let galleryCounter = 1;
@@ -60,23 +59,6 @@ $(document).ready(function (event) {
         }
     })
 
-    if ($(window).width() > 765) {
-
-        $('#girlWrapper').hover(function() {
-            $('#girlThoughtWrapper').fadeIn('fast');
-            
-        }, function(){
-            $('#girlThoughtWrapper').fadeOut('fast');
-        })
-
-        $('#girlWrapper2').hover(function() {
-            $('#girlThoughtWrapper2').fadeIn('fast');
-            
-        }, function(){
-            $('#girlThoughtWrapper2').fadeOut('fast');
-        })
-    }
-
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
     }
@@ -93,7 +75,6 @@ $(document).ready(function (event) {
         $('.spinnerWrapper').hide();
         $('.searchContainer').show();
         $('#eventContainer').css('display', 'flex');
-        $('#listImg').show();
     }, 1500);
 });
 
@@ -254,89 +235,7 @@ function loadJson() {
         $('h2').show();
         $('#weeksCount').show();
         $('#monthCount').show();
-        $('#listImg').show();
     }, 1000)
-}
-
-function loadList() {
-
-    $('#listContainer').empty();
-
-    $.get('./lists/laborBag.txt', function (data) {
-        laborBagList.push(JSON.parse(data));
-        setTimeout(function () {
-            buildList('listWrapper', $('#listContainer'), laborBagList);
-        }, 500);
-        $('html, body').animate({ scrollTop: $('#listContainer').position().top -210 }, 'slow');
-    });
-}
-
-function buildList(wrapper, containter, arr) {
-
-    let laborBag  = arr[0].laborBag;
-
-    if (lang == 1) {
-        headerText = 'Labor Bag';
-    } else {
-        headerText = 'תיק לידה';
-    }
-
-    let header = $('<h2>', {
-        text: headerText
-    }).appendTo(containter);
-
-    let listWrapper = $('<div>', {
-        class: 'listWrapper'
-    }).appendTo(containter);
-
-    for (var i = 0; i < laborBag.length; i++) {
-
-        let name;
-
-        if (lang == 1) {
-            name = laborBag[i].name;
-        } else {
-            name = laborBag[i].nameHeb;
-        }
-
-        let listItemWrapper = $('<div>', {
-            class: 'listItemWrapper',
-            numId: laborBag[i].id,
-            name: laborBag[i].name,
-            click: function() {
-                let star = $(this).find('.listItemCheck');
-                if (star.attr('src') == './images/unchecked.png') {
-                    localStorage.setItem('itemId' + $(this).attr('numId'), $(this).attr('numId'));
-                    $(this).find('.listItemCheck').attr('src', './images/checked.png');
-                } else {
-                    localStorage.removeItem('itemId' + $(this).attr('numId'), $(this).attr('numId'));
-                    $(this).find('.listItemCheck').attr('src', './images/unchecked.png');
-                }
-            }
-        }).appendTo(listWrapper);
-
-        let listItem = $('<p>', {
-            class: 'listItem',
-            text: laborBag[i].id + '. ' + name,
-        }).appendTo(listItemWrapper);
-
-        let listItemCheck = $('<img>', {
-            class: 'listItemCheck',
-            src: './images/unchecked.png'
-        }).appendTo(listItemWrapper);
-
-        $.each($('.listItemWrapper'), function (key, value) {
-            let data = localStorage.getItem('itemId' + $(value).attr('numId'));
-            if (data) {
-                let that = $(this).find($('.listItemCheck'));
-                if ($(value).attr('numId') === data) {
-                    $(that).attr('src', './images/checked.png');
-                } else {
-                    $($(that).find($('.star')).attr('src', './images/unchecked.png'));
-                }
-            }
-        });
-    }
 }
 
 Date.testTime = function(date1, date2) {
