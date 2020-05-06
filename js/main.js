@@ -59,6 +59,23 @@ $(document).ready(function (event) {
         }
     })
 
+    if ($(window).width() > 765) {
+
+        $('#girlWrapper').hover(function() {
+            $('#girlThoughtWrapper').fadeIn('fast');
+            
+        }, function(){
+            $('#girlThoughtWrapper').fadeOut('fast');
+        })
+
+        $('#girlWrapper2').hover(function() {
+            $('#girlThoughtWrapper2').fadeIn('fast');
+            
+        }, function(){
+            $('#girlThoughtWrapper2').fadeOut('fast');
+        })
+    }
+
     window.onbeforeunload = function () {
         window.scrollTo(0, 0);
     }
@@ -200,14 +217,14 @@ function showBaby() {
 function loadJson() {
 
     $('h2').hide();
-    $('#weeksCount').hide();
-    $('#monthCount').hide();
+    // $('#weeksCount').hide();
+    // $('#monthCount').hide();
 
-    if (lang == 1) {
-        $('#timePassedHeader').html('Time Passed');
-    } else {
-        $('#timePassedHeader').html('זמן שעבר');
-    }
+    // if (lang == 1) {
+    //     $('#timePassedHeader').html('Time Passed');
+    // } else {
+    //     $('#timePassedHeader').html('זמן שעבר');
+    // }
 
     $.get('./lists/littleBaby.txt', function (data) {
         littleBaby.push(JSON.parse(data));
@@ -661,6 +678,7 @@ function buildEvents(div, wrapper, arr, num) {
             case 2:
                 var galleryImg = $('<img>', {
                     class: 'galleryImg',
+                    alt: 'gallery img',
                     src: './images' + littleBaby[i].image
                 }).appendTo(eventWrapper);
                 break;
@@ -697,7 +715,8 @@ function buildEvents(div, wrapper, arr, num) {
         
                 var playVideoBtn = $('<img>', {
                     class: 'playVideoBtn',
-                    src: './images/playPause2.png',
+                    alt: 'play pause',
+                    src: './images/playPause2.webp',
                     click: function () {
                         var thisVideo = $(this).parent().parent().find($('.video')).get(0);
 
@@ -721,7 +740,8 @@ function buildEvents(div, wrapper, arr, num) {
         
                 var rewindBtn = $('<img>', {
                     class: 'rewindBtn',
-                    src: './images/stop.png',
+                    src: './images/stop.webp',
+                    alt: 'rewind',
                     click: function () {
                         var thisVideo = $(this).parent().parent().find($('.video')).get(0);
                         $(thisVideo).trigger('pause');
@@ -736,7 +756,8 @@ function buildEvents(div, wrapper, arr, num) {
 
                 var refreshBtn = $('<img>', {
                     class: 'refreshBtn',
-                    src: './images/refresh.png',
+                    src: './images/refresh.webp',
+                    alt: 'refresh',
                     click: function () {
                         var thisVideo = $(this).parent().parent().find($('.video')).get(0);
                         $.each($('.video'), function (key, value) {
