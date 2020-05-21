@@ -69,7 +69,7 @@ body{
 	width: 100%;
 	text-align: center;	
 	position: absolute;
-	bottom: 10rem;
+	bottom: 1rem;
 }
 
 #leftArrow {
@@ -98,23 +98,34 @@ body{
 	}
 }
 
-@media only screen and (max-width: 550px) {
-	#arrowWrapper {
-		bottom: 12rem;
-	}
-}
-
 @media only screen and (max-width: 480px) {
 
 	#arrowWrapper {
-		bottom: 14rem;
+		bottom: -3rem;
 	}
 
 	#leftArrow {
-		width: 100px;
+		width: 150px;
 	}
 	
 	#rightArrow {
-		width: 100px;
+		width: 150px;
+	}	
+}
+
+@media only screen and (max-width: 400px) {
+
+	#arrowWrapper {
+		bottom: 5rem;
+	}
+
+	#leftArrow {
+		position: absolute;
+		left: 0;
+	}
+	
+	#rightArrow {
+		position: absolute;
+		right: 0;
 	}	
 }
