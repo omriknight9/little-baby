@@ -2,11 +2,11 @@ html {
     position: relative;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     overflow-x: hidden;
-    background: url(../images/background.jpg) no-repeat center center fixed;
+    /* background: url(../images/background.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover; */
 }
 
 body {
@@ -14,11 +14,16 @@ body {
     margin: 0;
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
+    background: url(../images/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-main {
+/* main {
     margin-top: 8rem;
-}
+} */
 
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.3);
@@ -338,7 +343,7 @@ p {
     text-align: center;
 }
 
-.container {
+.container2 {
     display: flex;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -481,7 +486,7 @@ p {
 .video {
     box-shadow: 0 3px 8px 3px #848484;
     border-radius: 5px;
-    cursor: pointer;
+    /* cursor: pointer; */
     width: 100%;
 }
 
@@ -510,11 +515,27 @@ p {
 }
 
 .galleryImg {
-    width: 350px;
-    height: 500px;
+    /* width: 350px;
+    height: 500px; */
+    width: 100%;
+    height: 100%;
     box-shadow: 0 3px 8px 3px #848484;
     border-radius: 5px;
-    cursor: pointer;
+}
+
+.desktopImg {
+    width: 650px;
+    height: 500px;
+}
+
+.mobileImg {
+    width: 265px;
+    height: 500px;
+}
+
+.container3 {
+    position: relative;
+    margin-top: 58rem;
 }
 
 .goToTopBtn {
@@ -696,6 +717,14 @@ p {
 
 
 @media only screen and (max-width: 1200px) {
+    #bookContainer {
+        transform: scale(.9);
+        margin-top: 53rem;
+    }
+
+    .container {
+        left: 55% !important;
+    }
 
     .sortContent {
         width: 70%;
@@ -707,7 +736,20 @@ p {
     }
 }
 
+@media only screen and (max-width: 1200px) {
+    .container {
+        left: 50% !important;
+    }
+
+}
+
 @media only screen and (max-width: 1000px) {
+
+    #bookContainer {
+        transform: scale(.7);
+        margin-top: 43rem;
+    }
+
     .popupCont {
         width: 65%;
     }
@@ -736,6 +778,20 @@ p {
 }
 
 @media only screen and (max-width: 765px) {
+
+    .desktopImg {
+        width: 500px;
+        height: 400px;
+    }
+
+    #bookContainer {
+        transform: scale(.5);
+        margin-top: 34rem;
+    }
+
+    .container {
+        left: 47% !important;
+    }
 
     .refreshWrapper {
         top: 40%;
@@ -772,6 +828,12 @@ p {
 }
 
 @media only screen and (max-width: 600px) {
+
+    .desktopImg {
+        width: 450px;
+        height: 350px;
+    }
+
     #timePassed {
         width: 80%;
         margin: auto;
@@ -783,6 +845,11 @@ p {
 }
 
 @media only screen and (max-width: 550px) {
+
+    #bookContainer {
+        transform: scale(.4);
+        margin-top: 32rem;
+    }
 
     .header {
         height: 10rem;
@@ -831,6 +898,21 @@ p {
     }
 }
 
+@media only screen and (max-width: 500px) {
+    .desktopImg {
+        width: 400px;
+        height: 300px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    #bookContainer {
+        transform: scale(.3);
+        margin-top: 28rem;
+    }
+}
+
 @media only screen and (max-width: 460px) {
 
     .popupCont {
@@ -864,12 +946,25 @@ p {
     }
 }
 
+@media only screen and (max-width: 440px) {
+
+    .desktopImg {
+        width: 350px;
+        height: 250px;
+    }
+}
+
 @media only screen and (max-width: 400px) {
 
-    .galleryImg {
+    /* .galleryImg {
         width: 300px;
         height: 450px;
-    }
+    } */
+/*     
+    .mobileImg {
+        width: 300px;
+        height: 450px;
+    } */
 
     .eventCoverWrapper {
         top: 5rem;
@@ -893,6 +988,11 @@ p {
 }
 
 @media only screen and (max-width: 370px) {
+
+    .desktopImg {
+        width: 300px;
+        height: 200px;
+    }
 
     #wazeImg {
         width: 40px;
@@ -932,10 +1032,21 @@ p {
     }
 }
 
+@media only screen and (max-width: 360px) {
+    .container {
+        left: 45% !important;
+    }
+
+}
+
 @media only screen and (max-width: 330px) {
 
-    .galleryImg {
+    .container {
+        left: 42% !important;
+    }
+
+    /* .galleryImg {
         width: 290px;
         height: 440px;
-    }
+    } */
 }
