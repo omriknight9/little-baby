@@ -22,7 +22,7 @@ $(document).ready(function (event) {
 
     loadJson();
 
-    calculateInterval();
+    // calculateInterval();
 
     if (window.location.href.indexOf("lang=he") > -1) {
         setTimeout(function(){
@@ -200,7 +200,7 @@ function prevWeekImg() {
 }
 
 function showBaby() {
-    $('.container').empty();
+    $('.container2').empty();
     littleBaby = [];
     gallery = [];
     videos = [];
@@ -208,7 +208,7 @@ function showBaby() {
     $('.spinnerWrapper').show();
     
     loadJson();
-    calculateInterval();
+    // calculateInterval();
     eventsCounter = 1;
     galleryCounter = 1;
     videosCounter = 1;
@@ -247,6 +247,10 @@ function loadJson() {
             $('.spinnerWrapper').hide();
         }, 1500);
     });
+
+    setTimeout(function () {
+        $('.flipbook-viewport').fadeIn();
+    }, 1500);
 
     setTimeout(function () {
         $('h2').show();
@@ -305,46 +309,46 @@ Date.testTime = function(date1, date2) {
     return out;
 }
 
-function calculateInterval() {
-    let start = new Date(2019, 06, 09);
-    let end = new Date();
+// function calculateInterval() {
+//     let start = new Date(2019, 06, 09);
+//     let end = new Date();
 
-    let finalDate = Date.testTime(start, end);
-    let weeks = finalDate.substr(0, finalDate.indexOf(','));
-    let weeks2 = weeks.substr(0, weeks.indexOf(' '));
-    let withoutWeeks = finalDate.substr(finalDate.indexOf(',') + 1);
-    let days2 = withoutWeeks.substr(0, withoutWeeks.indexOf(','));
+//     let finalDate = Date.testTime(start, end);
+//     let weeks = finalDate.substr(0, finalDate.indexOf(','));
+//     let weeks2 = weeks.substr(0, weeks.indexOf(' '));
+//     let withoutWeeks = finalDate.substr(finalDate.indexOf(',') + 1);
+//     let days2 = withoutWeeks.substr(0, withoutWeeks.indexOf(','));
 
-    if (weeks2 >= 1 && weeks2 <= 6) {
-        month = 1;
-    } else if(weeks2 >= 7 && weeks2 <= 10) {
-        month = 2;
-    } else if (weeks2 >= 11 && weeks2 <= 15) {
-        month = 3;
-    } else if (weeks2 >= 16 && weeks2 <= 19) {
-        month = 4;
-    } else if (weeks2 >= 20 && weeks2 <= 23) {
-        month = 5;
-    } else if (weeks2 >= 24 && weeks2 <= 27) {
-        month = 6;
-    } else if (weeks2 >= 28 && weeks2 <= 32) {
-        month = 7;
-    } else if (weeks2 >= 33 && weeks2 <= 36) {
-        month = 8;
-    } else if (weeks2 >= 37 && weeks2 <= 40) {
-        month = 9;
-    } else if (weeks2 >= 41 && weeks2 <= 44) {
-        month = 10;
-    }
+//     if (weeks2 >= 1 && weeks2 <= 6) {
+//         month = 1;
+//     } else if(weeks2 >= 7 && weeks2 <= 10) {
+//         month = 2;
+//     } else if (weeks2 >= 11 && weeks2 <= 15) {
+//         month = 3;
+//     } else if (weeks2 >= 16 && weeks2 <= 19) {
+//         month = 4;
+//     } else if (weeks2 >= 20 && weeks2 <= 23) {
+//         month = 5;
+//     } else if (weeks2 >= 24 && weeks2 <= 27) {
+//         month = 6;
+//     } else if (weeks2 >= 28 && weeks2 <= 32) {
+//         month = 7;
+//     } else if (weeks2 >= 33 && weeks2 <= 36) {
+//         month = 8;
+//     } else if (weeks2 >= 37 && weeks2 <= 40) {
+//         month = 9;
+//     } else if (weeks2 >= 41 && weeks2 <= 44) {
+//         month = 10;
+//     }
 
-    if (lang == 1) {
-        $('#weeksCount').html('Week: ' + weeks2 + ' And' + days2);
-        $('#monthCount').html('Month: ' + month);
-    } else {
-        $('#weeksCount').html('שבוע: ' + weeks2 + ' ו' + days2);
-        $('#monthCount').html('חודש: ' + month);
-    }
- }
+//     if (lang == 1) {
+//         $('#weeksCount').html('Week: ' + weeks2 + ' And' + days2);
+//         $('#monthCount').html('Month: ' + month);
+//     } else {
+//         $('#weeksCount').html('שבוע: ' + weeks2 + ' ו' + days2);
+//         $('#monthCount').html('חודש: ' + month);
+//     }
+//  }
 
 function buildEvents(div, wrapper, arr, num) {
 
@@ -573,52 +577,53 @@ function buildEvents(div, wrapper, arr, num) {
             case 2:
                     var eventWrapper = $('<div>', {
                         class: eventClass,
-                        'date': littleBaby[i].date,
-                        'dateText': dateForShow,
-                        'name': littleBaby[i].name,
-                        'nameHeb': littleBaby[i].nameHeb,
+                        // 'date': littleBaby[i].date,
+                        // 'dateText': dateForShow,
+                        // 'name': littleBaby[i].name,
+                        // 'nameHeb': littleBaby[i].nameHeb,
                         'group': littleBaby[i].group,
                         'img': littleBaby[i].image,
-                        'colorGroup': littleBaby[i].colorGroup,
-                        'place': littleBaby[i].place,
-                        'googleMap': littleBaby[i].map,
-                        'waze': littleBaby[i].waze,
-                        click: function () {
-                            if ($(this).attr('googleMap') !== undefined) {
-                                $('.mapWrapper').show();
-                                $('.eventPlacePop').hide();
-                                $('#wazeWrapper').show();
-                                $('.wazeMap').attr('href', $(this).attr('waze'));
-                                if (lang == 1) {
-                                    $('.mapPlace').html('Where? ');
-                                } else {
-                                    $('.mapPlace').html('איפה? ');
-                                }
+                        'type': littleBaby[i].type,
+                        // 'colorGroup': littleBaby[i].colorGroup,
+                        // 'place': littleBaby[i].place,
+                        // 'googleMap': littleBaby[i].map,
+                        // 'waze': littleBaby[i].waze,
+                        // click: function () {
+                        //     if ($(this).attr('googleMap') !== undefined) {
+                        //         $('.mapWrapper').show();
+                        //         $('.eventPlacePop').hide();
+                        //         $('#wazeWrapper').show();
+                        //         $('.wazeMap').attr('href', $(this).attr('waze'));
+                        //         if (lang == 1) {
+                        //             $('.mapPlace').html('Where? ');
+                        //         } else {
+                        //             $('.mapPlace').html('איפה? ');
+                        //         }
      
-                                $('.eventMapPop').attr('href', $(this).attr('googleMap'));
-                            } else {
-                                $('.mapWrapper').hide();
-                                $('.eventPlacePop').show();
-                                $('#wazeWrapper').hide();
-                                if (lang == 1) {
-                                    $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
-                                } else {
-                                    $('.eventPlacePop').html('איפה? ' + $(this).attr('place'));
-                                }
+                        //         $('.eventMapPop').attr('href', $(this).attr('googleMap'));
+                        //     } else {
+                        //         $('.mapWrapper').hide();
+                        //         $('.eventPlacePop').show();
+                        //         $('#wazeWrapper').hide();
+                        //         if (lang == 1) {
+                        //             $('.eventPlacePop').html('Where? ' + $(this).attr('place'));
+                        //         } else {
+                        //             $('.eventPlacePop').html('איפה? ' + $(this).attr('place'));
+                        //         }
 
-                                $('.eventMapPop').attr('href', '#');
-                            }
-                            $('.eventMapPop').html($(this).attr('place'));
-                            if (lang == 1) {
-                                $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
-                                $('.eventNamePop').html($(this).attr('name'));
-                            } else {
-                                $('.eventDatePop').html('תאריך: ' + $(this).attr('dateText'));
-                                $('.eventNamePop').html($(this).attr('nameHeb'));
-                            }
-                            $('#eventCover').attr('src', ('./images' + $(this).attr('img'))).show();
-                            $('#eventDetails').fadeIn(150);
-                        }
+                        //         $('.eventMapPop').attr('href', '#');
+                        //     }
+                        //     $('.eventMapPop').html($(this).attr('place'));
+                        //     if (lang == 1) {
+                        //         $('.eventDatePop').html('Date: ' + $(this).attr('dateText'));
+                        //         $('.eventNamePop').html($(this).attr('name'));
+                        //     } else {
+                        //         $('.eventDatePop').html('תאריך: ' + $(this).attr('dateText'));
+                        //         $('.eventNamePop').html($(this).attr('nameHeb'));
+                        //     }
+                        //     $('#eventCover').attr('src', ('./images' + $(this).attr('img'))).show();
+                        //     $('#eventDetails').fadeIn(150);
+                        // }
                     }).appendTo(containerToAppend);
                 break;
             case 3:
@@ -629,11 +634,10 @@ function buildEvents(div, wrapper, arr, num) {
                     'name': littleBaby[i].name,
                     'nameHeb': littleBaby[i].nameHeb,
                     'group': littleBaby[i].group,
-                    'img': littleBaby[i].image,
                     'video': littleBaby[i].video,
                     'type': littleBaby[i].type,
                     'colorGroup': littleBaby[i].colorGroup,
-                    'place': littleBaby[i].place,
+                    // 'place': littleBaby[i].place,
                 }).appendTo(containerToAppend);
                 break;
         }
@@ -676,6 +680,16 @@ function buildEvents(div, wrapper, arr, num) {
                 break;
     
             case 2:
+
+                $.each($('.galleryImgWrapper'), function (key, value) {
+                    if ($(this).attr('type') == 'mobile') {
+                        $(this).addClass('mobileImg');
+                    } else {
+                        $(this).addClass('desktopImg');
+                        // $(this).find($('.galleryImg')).addClass('desktopImg');
+                    }
+                });
+
                 var galleryImg = $('<img>', {
                     class: 'galleryImg',
                     alt: 'gallery img',
@@ -773,24 +787,24 @@ function buildEvents(div, wrapper, arr, num) {
                     class: 'video',
                     id: 'video' + littleBaby[i].id,
                     src: './videos' + littleBaby[i].video,
-                    click: function () {
-                        $('.mapWrapper').hide();
-                        $('.eventPlacePop').show();
-                        $('#wazeWrapper').hide();
-                        $('.eventMapPop').attr('href', '#');
-                        if (lang == 1) {
-                            $('.eventDatePop').html('Date: ' + $(this).parent().attr('dateText'));
-                            $('.eventPlacePop').html('Where? ' + $(this).parent().attr('place'));
-                            $('.eventNamePop').html($(this).parent().attr('name'));
-                        } else {
-                            $('.eventDatePop').html('תאריך: ' + $(this).parent().attr('dateText'));
-                            $('.eventPlacePop').html('איפה? ' + $(this).parent().attr('place'));
-                            $('.eventNamePop').html($(this).parent().attr('nameHeb'));
-                        }
+                    // click: function () {
+                    //     $('.mapWrapper').hide();
+                    //     $('.eventPlacePop').show();
+                    //     $('#wazeWrapper').hide();
+                    //     $('.eventMapPop').attr('href', '#');
+                    //     if (lang == 1) {
+                    //         $('.eventDatePop').html('Date: ' + $(this).parent().attr('dateText'));
+                    //         $('.eventPlacePop').html('Where? ' + $(this).parent().attr('place'));
+                    //         $('.eventNamePop').html($(this).parent().attr('name'));
+                    //     } else {
+                    //         $('.eventDatePop').html('תאריך: ' + $(this).parent().attr('dateText'));
+                    //         $('.eventPlacePop').html('איפה? ' + $(this).parent().attr('place'));
+                    //         $('.eventNamePop').html($(this).parent().attr('nameHeb'));
+                    //     }
 
-                        $('#eventCover').hide();
-                        $('#eventDetails').fadeIn(150);
-                    }
+                    //     $('#eventCover').hide();
+                    //     $('#eventDetails').fadeIn(150);
+                    // }
                 }).appendTo(eventWrapper);
         
                 break;
