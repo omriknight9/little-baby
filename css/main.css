@@ -424,6 +424,7 @@ p {
     flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 2rem;
 }
 
 .galleryImgWrapper {
@@ -539,6 +540,7 @@ p {
 
 .container3 {
     position: relative;
+    text-align: center;
     margin-top: 58rem;
 }
 
@@ -721,10 +723,10 @@ p {
 
 
 @media only screen and (max-width: 1200px) {
-    /* #bookContainer {
+    #bookContainer {
         transform: scale(.9);
         margin-top: 53rem;
-    } */
+    }
 
     #galleryContainer {
         margin-top: -8rem;
@@ -734,9 +736,9 @@ p {
         left: 50% !important;
     }
 
-    #flipbook1{
+    /* #flipbook1{
         transform: scale(.9) !important;
-    }
+    } */
 
     .container {
         left: 50% !important;
@@ -755,17 +757,17 @@ p {
 @media only screen and (max-width: 1000px) {
 
     #galleryContainer {
-        margin-top: -15rem;
+        margin-top: -5rem;
     }
 
     #bookContainer {
-        /* transform: scale(.7); */
-        margin-top: 53rem;
+        transform: scale(.7);
+        margin-top: 45rem;
     }
-
+/* 
     #flipbook1{
         transform: scale(.7) !important;
-    }
+    } */
 
     .popupCont {
         width: 65%;
@@ -797,7 +799,7 @@ p {
 @media only screen and (max-width: 765px) {
 
     #galleryContainer {
-        margin-top: -10rem;
+        margin-top: -2rem;
     }
 
     .desktopImg {
@@ -806,17 +808,17 @@ p {
     }
 
     #bookContainer {
-        /* transform: scale(.5); */
-        margin-top: 50rem;
+        transform: scale(.5);
+        margin-top: 35rem;
     }
 
-    #flipbook1{
+    /* #flipbook1{
         transform: scale(.5) !important;
     }
 
     .container {
         left: 47% !important;
-    }
+    } */
 
     .refreshWrapper {
         top: 40%;
@@ -872,13 +874,13 @@ p {
 @media only screen and (max-width: 550px) {
 
     #bookContainer {
-        /* transform: scale(.4); */
-        margin-top: 50rem;
+        transform: scale(.4);
+        margin-top: 32rem;
     }
-
+/* 
     #flipbook1{
         transform: scale(.4) !important;
-    }
+    } */
 
     .header {
         height: 10rem;
@@ -937,17 +939,17 @@ p {
 @media only screen and (max-width: 480px) {
 
     #galleryContainer {
-        margin-top: -14rem;
+        margin-top: 0;
     }
 
     #bookContainer {
-        /* transform: scale(.3); */
-        margin-top: 48rem;
+        transform: scale(.3);
+        margin-top: 27rem;
     }
 
-    #flipbook1{
+    /* #flipbook1{
         transform: scale(.3) !important;
-    }
+    } */
 }
 
 @media only screen and (max-width: 460px) {
