@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=David+Libre&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Kurale&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/modernizr.2.5.3.min.js"></script>
     <script type="text/javascript" src="js/translations.js" async defer></script>
     <script type="text/javascript" src="js/moment.js" defer></script>
     <script src="js/main.js" defer></script>
@@ -61,11 +62,29 @@
             </div>
         </div>
 
-        <div class="container" id="eventContainer"></div>
-        <div class="container" id="galleryContainer"></div>
-        <div class="container" id="videoContainer"></div>
-        <div class="container" id="listContainer"></div>
-        
+        <div class="container3" id="bookContainer">
+            <div class="flipbook-viewport">
+                <div class="container">
+                    <div class="flipbook" id="flipbook1">
+                        <div class="page" style="background-image:url(/images/Emma/1.webp)"></div>
+                        <div class="page" style="background-image:url(/images/Emma/2.webp)"></div>
+                        <div class="page" style="background-image:url(/images/Emma/3.webp)"></div>
+                        <div class="page" style="background-image:url(/images/Emma/4.webp)"></div>
+                        <div class="page" style="background-image:url(/images/Emma/5.webp)"></div>
+                        <div class="double" style="background-image:url(/images/Emma/6.webp)"></div>
+                        <div class="double" style="background-image:url(/images/Emma/7.webp)"></div>
+                        <div class="page" style="background-image:url(/images/Emma/8.webp)"></div>
+                        <div class="page" style="background-image:url(/images/Emma/9.webp)"></div>
+                        <div class="double" style="background-image:url(/images/Emma/10.webp)"></div>
+                        <div class="page" style="background-image:url(/images/Emma/11.webp)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container2" id="galleryContainer"></div>
+        <div class="container2" id="videoContainer"></div>
+        <!-- <div class="container2" id="eventContainer"></div> -->
+        <!-- <div class="container2" id="listContainer"></div> -->
     </main>
     <img src="images/upBtn.webp" alt="up arrow" class="goToTopBtn" onclick="goToTop()" />
 
@@ -94,5 +113,77 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript" class="script">
+    function loadApp() {
+
+    var flipbook = $('#flipbook1');
+
+    // Check if the CSS was already loaded
+
+    if (flipbook.width()==0 || flipbook.height()==0) {
+        setTimeout(loadApp, 10);
+        return;
+    }
+
+    $('#flipbook1 .double').scissor();
+
+    // Arrows
+
+    $(document).keydown(function(e) {
+
+        var previous = 37, next = 39;
+
+        switch (e.keyCode) {
+            case previous:
+                $('#flipbook1').turn('previous');
+            break;
+            case next:
+                $('#flipbook1').turn('next');
+            break;
+        }
+    });
+
+    // Create the flipbook
+
+    $('#flipbook1').turn({
+            // Elevation
+
+            elevation: 50,
+            
+            // Enable gradients
+
+            gradients: true,
+            
+            // Auto center this flipbook
+
+            autoCenter: true,
+
+            duration: 850,
+
+    });
+
+    // $(".flipbook").bind("first", function(event) {
+    //     console.log("You are at the start of the flipbook");
+    // });
+
+    // $(".flipbook").bind("last", function(event) {
+    //     console.log("You are at the end of the flipbook");
+    // });
+
+    // $(".flipbook").bind("turning", function(event, page, view) {
+    //     console.log("Turning the page to: "+page);
+    // });
+    }
+
+    yepnope({
+        test : Modernizr.csstransforms,
+        // yep: ['../../lib/turn.min.js'],
+        yep: ['js/turn.js'],
+        nope: ['js/turn.html4.min.js'],
+        both: ['js/scissor.min.js', 'css/double-page.css'],
+        complete: loadApp
+    });
+        </script>
 </body>
 </html>
