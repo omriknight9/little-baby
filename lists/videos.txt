@@ -1,9 +1,8 @@
 
 {
     "videos" : [
-	{ "id": 1, "name": "Early Systems Review", "nameHeb": "בדיקת מערכות ראשונית", "date": "10/27/2019", "place": "Ultrasound", "video": "/earlySystemsReview.mp4", "group": 1.1, "type": "desktop"},
-	{ "id": 2,  "name": "Early Systems Review", "nameHeb": "בדיקת מערכות ראשונית", "date": "10/27/2019", "place": "Ultrasound", "video": "/earlySystemsReview2.mp4", "group": 1.2, "type": "desktop"},
-	{ "id": 3,  "name": "Early Systems Review", "nameHeb": "בדיקת מערכות ראשונית", "date": "10/27/2019", "place": "Ultrasound", "video": "/earlySystemsReview3.mp4", "group": 1.3, "type": "desktop"}
+         { "id": 1, "name": "Early Systems Review", "nameHeb": "בדיקת מערכות ראשונית", "date": "10/27/2019", "place": "Ultrasound", "video": "/earlySystemsReview.mp4", "group": 1.1, "type": "desktop"},
+         { "id": 2, "name": "Simba", "nameHeb": "סימבה", "date": "05/10/2020", "place": "Home", "video": "/simba.mp4", "group": 2, "type": "mobile"}
 
     ]
 }
