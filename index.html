@@ -64,7 +64,7 @@
 
         <div class="container3" id="bookContainer">
             <div class="flipbook-viewport">
-                <div class="container">
+                <div class="container onePage">
                     <div class="flipbook" id="flipbook1">
                         <div class="page" style="background-image:url(./images/Emma/1.webp)"></div>
                         <div class="page" style="background-image:url(./images/Emma/2.webp)"></div>
@@ -171,15 +171,19 @@
     });
 
     // $(".flipbook").bind("first", function(event) {
-    //     console.log("You are at the start of the flipbook");
+    //     $('.container').attr('class', 'container onePage');
     // });
 
     // $(".flipbook").bind("last", function(event) {
-    //     console.log("You are at the end of the flipbook");
+    //     $('.container').attr('class', 'container onePage');
     // });
 
     // $(".flipbook").bind("turning", function(event, page, view) {
-    //     console.log("Turning the page to: "+page);
+    //     if (view[0] == 0 || view[1] == 0) {
+    //         $('.container').attr('class', 'container onePage');
+    //     } else {
+    //         $('.container').attr('class', 'container twoPages');
+    //     }
     // });
     }
 
