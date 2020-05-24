@@ -124,67 +124,69 @@
     <script type="text/javascript" class="script">
     function loadApp() {
 
-    var flipbook = $('#flipbook1');
+        var flipbook = $('#flipbook1');
 
-    // Check if the CSS was already loaded
+        // Check if the CSS was already loaded
 
-    if (flipbook.width()==0 || flipbook.height()==0) {
-        setTimeout(loadApp, 10);
-        return;
-    }
-
-    $('#flipbook1 .double').scissor();
-
-    // Arrows
-
-    $(document).keydown(function(e) {
-
-        var previous = 37, next = 39;
-
-        switch (e.keyCode) {
-            case previous:
-                $('#flipbook1').turn('previous');
-            break;
-            case next:
-                $('#flipbook1').turn('next');
-            break;
+        if (flipbook.width()==0 || flipbook.height()==0) {
+            setTimeout(loadApp, 10);
+            return;
         }
-    });
 
-    // Create the flipbook
+        $('#flipbook1 .double').scissor();
 
-    $('#flipbook1').turn({
-            // Elevation
+        // Arrows
 
-            elevation: 50,
-            
-            // Enable gradients
+        $(document).keydown(function(e) {
 
-            gradients: true,
-            
-            // Auto center this flipbook
+            var previous = 37, next = 39;
 
-            autoCenter: true,
+            switch (e.keyCode) {
+                case previous:
+                    $('#flipbook1').turn('previous');
+                break;
+                case next:
+                    $('#flipbook1').turn('next');
+                break;
+            }
+        });
 
-            duration: 850,
+        // Create the flipbook
 
-    });
+        $('#flipbook1').turn({
+                // Elevation
 
-    // $(".flipbook").bind("first", function(event) {
-    //     $('.container').attr('class', 'container onePage');
-    // });
+                elevation: 50,
+                
+                // Enable gradients
 
-    // $(".flipbook").bind("last", function(event) {
-    //     $('.container').attr('class', 'container onePage');
-    // });
+                gradients: true,
+                
+                // Auto center this flipbook
 
-    // $(".flipbook").bind("turning", function(event, page, view) {
-    //     if (view[0] == 0 || view[1] == 0) {
-    //         $('.container').attr('class', 'container onePage');
-    //     } else {
-    //         $('.container').attr('class', 'container twoPages');
-    //     }
-    // });
+                autoCenter: true,
+
+                duration: 850,
+
+        });
+
+        // $(".flipbook").bind("first", function(event) {
+        //     $('.container').attr('class', 'container onePage');
+        // });
+
+        // $(".flipbook").bind("last", function(event) {
+        //     $('.container').attr('class', 'container onePage');
+        // });
+
+        $(".flipbook").bind("turning", function(event, page, view) {
+            if (view[0] == 0) {
+                $('#leftArrow').css({'opacity': .2, 'pointer-events': 'none'});
+            } else if(view[1] == 0) {
+                $('#rightArrow').css({'opacity': .2, 'pointer-events': 'none'});
+            } else {
+                $('#rightArrow, #leftArrow').css({'opacity': 1, 'pointer-events': 'all'});
+            }
+        });
     }
 
     yepnope({
