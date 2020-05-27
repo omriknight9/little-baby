@@ -187,6 +187,10 @@
                 $('#rightArrow, #leftArrow').css({'opacity': 1, 'pointer-events': 'all'});
             }
         });
+
+        $(".flipbook").bind("last", function(event) {
+            $('#rightArrow').css({'opacity': .2, 'pointer-events': 'none'});
+        });
     }
 
     yepnope({
